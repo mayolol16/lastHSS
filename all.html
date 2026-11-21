@@ -2132,10 +2132,8 @@
     let meowKeyBuffer = '';
     let meowLastKeyTime = 0;
     const originalTitle = document.title;
-    const meowOriginalTextNodes = new WeakMap();
-    const meowOriginalTitles = new WeakMap();
-    const meowTrackedTextNodes = new Set();
-    const meowTrackedTitleEls = new Set();
+    const meowOriginalTextNodes = new Map();
+    const meowOriginalTitles = new Map();
     let geminiModalWrapped = false;
 
     function meowifyString(str) {
@@ -2160,7 +2158,6 @@
               if (transformed !== val) {
                 if (!meowOriginalTextNodes.has(root)) {
                   meowOriginalTextNodes.set(root, val);
-                  meowTrackedTextNodes.add(root);
                 }
                 root.nodeValue = transformed;
               }
@@ -2181,7 +2178,6 @@
             if (transformed !== t) {
               if (!meowOriginalTitles.has(el)) {
                 meowOriginalTitles.set(el, t);
-                meowTrackedTitleEls.add(el);
               }
               el.setAttribute('title', transformed);
             }
@@ -2213,13 +2209,15 @@
             if (transformed !== val) {
               if (!meowOriginalTextNodes.has(node)) {
                 meowOriginalTextNodes.set(node, val);
-                meowTrackedTextNodes.add(node);
               }
               node.nodeValue = transformed;
             }
           }
         }
       } finally {
+        if (meowObserver) {
+          meowObserver.takeRecords();
+        }
         isApplyingMeow = false;
       }
     }
@@ -2265,26 +2263,25 @@
         localStorage.setItem(MEOW_STORAGE_KEY, '1');
       } catch (e) {}
       if (meowObserver) {
+        meowObserver.takeRecords();
         meowObserver.disconnect();
         meowObserver = null;
       }
       document.title = originalTitle;
 
-      meowTrackedTextNodes.forEach(node => {
-        const orig = meowOriginalTextNodes.get(node);
-        if (orig !== undefined && node.isConnected) {
+      meowOriginalTextNodes.forEach((orig, node) => {
+        if (node.isConnected) {
           node.nodeValue = orig;
         }
       });
-      meowTrackedTextNodes.clear();
+      meowOriginalTextNodes.clear();
 
-      meowTrackedTitleEls.forEach(el => {
-        const orig = meowOriginalTitles.get(el);
-        if (orig !== undefined && el.isConnected) {
+      meowOriginalTitles.forEach((orig, el) => {
+        if (el.isConnected) {
           el.setAttribute('title', orig);
         }
       });
-      meowTrackedTitleEls.clear();
+      meowOriginalTitles.clear();
 
       buildCategoryTray();
       renderCurrentQuestion();
