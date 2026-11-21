@@ -31,6 +31,6 @@ Interactive, standalone examination web application suite for **Health Systems S
 
 ## ⚡ Features
 
-- **🐱 Meow Password Lock**: Every word on the page displays as `meow` until the password **`meow`** is entered in the top lock bar (persists across set switches within the same browser tab).
+- **🐱 Stealth Meow Lock**: Every word on the page displays as `meow` on first visit with no visible password box — simply type **`meow`** anywhere on the keyboard to unlock! Once unlocked, it stays unlocked in your browser (`localStorage`) across reloads and set switches until you type **`meow`** again to re-lock.
 - **3-Way Header Switcher**: Seamlessly toggle between `Final Exam (120Q)`, `Practice & Quizzes (28Q)`, and `All Combined (148Q)` with independent `localStorage` progress for each set.
 - **Tutor Mode vs. Exam Mode**, **High-Yield Pearls & Distractor Breakdowns**, **Highlighter (`H`)**, **Cross-Out (`S` or right-click)**, **Flagging (`F`)**, **Keyboard Shortcuts (`1–5` / `A–E`, `←`/`P`, `→`/`N`)**, **Right-Side Navigator**, **Scorecard (`R`)**, and **Targeted Study Prompt Generator**.

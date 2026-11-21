@@ -1028,134 +1028,13 @@
       }
     }
 
-    /* Meow Password Lock Bar */
+    /* Prevent flash of un-meowed text before initial load check */
     body.meow-booting {
       visibility: hidden;
-    }
-
-    .meow-lock-bar {
-      background: linear-gradient(90deg, #1e1b4b 0%, #131d31 50%, #1e1b4b 100%);
-      border-bottom: 1px solid var(--purple);
-      padding: 8px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      flex-shrink: 0;
-      z-index: 60;
-      box-shadow: 0 2px 14px rgba(168, 85, 247, 0.25);
-    }
-
-    [data-theme="light"] .meow-lock-bar {
-      background: linear-gradient(90deg, #ede9fe 0%, #f8fafc 50%, #ede9fe 100%);
-    }
-
-    .meow-lock-bar.unlocked {
-      display: none;
-    }
-
-    .meow-lock-form {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .meow-lock-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.02em;
-    }
-
-    .meow-password-input {
-      background: var(--bg-primary);
-      border: 1.5px solid var(--border-light);
-      color: var(--text-main);
-      padding: 5px 12px;
-      border-radius: var(--radius-md);
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      width: 170px;
-      outline: none;
-      transition: border-color 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    .meow-password-input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-glow);
-    }
-
-    .meow-password-input.shake {
-      border-color: var(--error);
-      animation: meowShake 0.32s ease;
-    }
-
-    @keyframes meowShake {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-6px); }
-      40%, 80% { transform: translateX(6px); }
-    }
-
-    .meow-unlock-btn {
-      background: var(--purple);
-      color: #ffffff;
-      border: none;
-      padding: 6px 14px;
-      border-radius: var(--radius-md);
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: inherit;
-      transition: background 0.18s ease, transform 0.15s ease;
-    }
-
-    .meow-unlock-btn:hover {
-      background: #c084fc;
-      transform: translateY(-1px);
-    }
-
-    .meow-error-msg {
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--error);
-      min-width: 68px;
     }
   </style>
 </head>
 <body data-theme="dark" class="meow-booting">
-
-  <!-- Meow Password Lock Bar -->
-  <div class="meow-lock-bar" id="meowLockBar">
-    <form class="meow-lock-form" id="meowUnlockForm" onsubmit="handleMeowUnlock(event)">
-      <label class="meow-lock-label" for="meowPasswordInput">
-        <span>🐱</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        <span>Meow:</span>
-      </label>
-      <input
-        type="password"
-        id="meowPasswordInput"
-        class="meow-password-input"
-        placeholder="meow"
-        aria-label="meow"
-        autocomplete="off"
-        autofocus
-      />
-      <button type="submit" class="meow-unlock-btn">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
-        <span>Meow</span>
-      </button>
-      <span class="meow-error-msg" id="meowErrorMsg"></span>
-    </form>
-  </div>
 
   <!-- Header -->
   <header class="exam-header">
@@ -2238,21 +2117,25 @@
       window.location.href = target;
     }
 
-    // --- Meow Password Lock Mode ---
+    // --- Stealth Keystroke Meow Lock Mode ---
+    const MEOW_STORAGE_KEY = 'hss_meow_unlocked_v1';
     let meowLocked = true;
     try {
-      if (sessionStorage.getItem('hss_meow_unlocked') === '1') {
+      if (localStorage.getItem(MEOW_STORAGE_KEY) === '1') {
         meowLocked = false;
       }
     } catch (e) {}
 
     let isApplyingMeow = false;
     let meowObserver = null;
+    let meowKeyBuffer = '';
+    let meowLastKeyTime = 0;
     const originalTitle = document.title;
     const meowOriginalTextNodes = new WeakMap();
     const meowOriginalTitles = new WeakMap();
     const meowTrackedTextNodes = new Set();
     const meowTrackedTitleEls = new Set();
+    let geminiModalWrapped = false;
 
     function meowifyString(str) {
       if (!str) return str;
@@ -2269,7 +2152,7 @@
       try {
         if (root.nodeType === Node.TEXT_NODE) {
           const parent = root.parentElement;
-          if (parent && !['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT'].includes(parent.tagName) && !parent.closest('#meowLockBar')) {
+          if (parent && !['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT'].includes(parent.tagName)) {
             const val = root.nodeValue;
             if (val && /[A-Za-z]/.test(val)) {
               const transformed = meowifyString(val);
@@ -2286,13 +2169,11 @@
         }
 
         if (root.nodeType !== Node.ELEMENT_NODE) return;
-        if (root.id === 'meowLockBar' || root.closest('#meowLockBar')) return;
 
         const titleEls = root.hasAttribute && root.hasAttribute('title')
           ? [root, ...root.querySelectorAll('[title]')]
           : Array.from(root.querySelectorAll('[title]'));
         titleEls.forEach(el => {
-          if (el.closest('#meowLockBar')) return;
           const t = el.getAttribute('title');
           if (t && /[A-Za-z]/.test(t)) {
             const transformed = meowifyString(t);
@@ -2322,7 +2203,7 @@
         let node;
         while ((node = walker.nextNode())) {
           const parent = node.parentElement;
-          if (!parent || ['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT'].includes(parent.tagName) || parent.closest('#meowLockBar')) {
+          if (!parent || ['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT'].includes(parent.tagName)) {
             continue;
           }
           const val = node.nodeValue;
@@ -2342,15 +2223,10 @@
       }
     }
 
-    function startMeowMode() {
-      if (!meowLocked) {
-        document.getElementById('meowLockBar').classList.add('unlocked');
-        document.body.classList.remove('meow-booting');
-        return;
-      }
+    function enableMeowMode() {
+      meowLocked = true;
       document.title = meowifyString(originalTitle);
       applyMeowToNode(document.body);
-      document.body.classList.remove('meow-booting');
 
       if (meowObserver) meowObserver.disconnect();
       meowObserver = new MutationObserver((mutations) => {
@@ -2369,8 +2245,9 @@
         characterData: true
       });
 
-      const origOpenGemini = window.openGeminiModal;
-      if (typeof origOpenGemini === 'function') {
+      if (!geminiModalWrapped && typeof window.openGeminiModal === 'function') {
+        geminiModalWrapped = true;
+        const origOpenGemini = window.openGeminiModal;
         window.openGeminiModal = function() {
           origOpenGemini();
           if (meowLocked) {
@@ -2379,64 +2256,98 @@
           }
         };
       }
-
-      const input = document.getElementById('meowPasswordInput');
-      if (input) input.focus();
     }
 
-    function handleMeowUnlock(e) {
-      if (e) e.preventDefault();
-      const input = document.getElementById('meowPasswordInput');
-      const err = document.getElementById('meowErrorMsg');
-      const val = (input.value || '').trim().toLowerCase();
-
-      if (val === 'meow') {
-        meowLocked = false;
-        try {
-          sessionStorage.setItem('hss_meow_unlocked', '1');
-        } catch (errStore) {}
-        if (meowObserver) {
-          meowObserver.disconnect();
-          meowObserver = null;
-        }
-        document.title = originalTitle;
-
-        meowTrackedTextNodes.forEach(node => {
-          const orig = meowOriginalTextNodes.get(node);
-          if (orig !== undefined && node.isConnected) {
-            node.nodeValue = orig;
-          }
-        });
-        meowTrackedTextNodes.clear();
-
-        meowTrackedTitleEls.forEach(el => {
-          const orig = meowOriginalTitles.get(el);
-          if (orig !== undefined && el.isConnected) {
-            el.setAttribute('title', orig);
-          }
-        });
-        meowTrackedTitleEls.clear();
-
-        document.getElementById('meowLockBar').classList.add('unlocked');
-
-        buildCategoryTray();
-        renderCurrentQuestion();
-        buildSidebarNavigator();
-        updateModeUI();
-        if (document.getElementById('scoreModal').classList.contains('open')) {
-          openScoreReport();
-        }
-        if (document.getElementById('geminiModal').classList.contains('open')) {
-          openGeminiModal();
-        }
-        showToast('🐱 Unlocked! Welcome to HSS Semester 3 Final Exam.');
-      } else {
-        err.textContent = 'Meow! 😾';
-        input.classList.remove('shake');
-        void input.offsetWidth;
-        input.classList.add('shake');
-        input.select();
+    function unlockMeowMode() {
+      meowLocked = false;
+      try {
+        localStorage.setItem(MEOW_STORAGE_KEY, '1');
+      } catch (e) {}
+      if (meowObserver) {
+        meowObserver.disconnect();
+        meowObserver = null;
       }
+      document.title = originalTitle;
+
+      meowTrackedTextNodes.forEach(node => {
+        const orig = meowOriginalTextNodes.get(node);
+        if (orig !== undefined && node.isConnected) {
+          node.nodeValue = orig;
+        }
+      });
+      meowTrackedTextNodes.clear();
+
+      meowTrackedTitleEls.forEach(el => {
+        const orig = meowOriginalTitles.get(el);
+        if (orig !== undefined && el.isConnected) {
+          el.setAttribute('title', orig);
+        }
+      });
+      meowTrackedTitleEls.clear();
+
+      buildCategoryTray();
+      renderCurrentQuestion();
+      buildSidebarNavigator();
+      updateModeUI();
+      if (document.getElementById('scoreModal').classList.contains('open')) {
+        openScoreReport();
+      }
+      if (document.getElementById('geminiModal').classList.contains('open')) {
+        openGeminiModal();
+      }
+      showToast('🐱 Unlocked! Type "meow" anytime to lock again.');
+    }
+
+    function lockMeowMode() {
+      try {
+        localStorage.setItem(MEOW_STORAGE_KEY, '0');
+      } catch (e) {}
+      enableMeowMode();
+      showToast('🐱 Meow!');
+    }
+
+    function setupMeowKeystrokeListener() {
+      // Capture phase so typing "meow" never accidentally triggers Option E shortcut
+      window.addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+        const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
+        if (tag === 'input' || tag === 'textarea') return;
+        if (e.key.length !== 1 || !/[a-zA-Z]/.test(e.key)) return;
+
+        const now = Date.now();
+        if (now - meowLastKeyTime > 2000) {
+          meowKeyBuffer = '';
+        }
+        const ch = e.key.toLowerCase();
+
+        // Prevent 'e' from selecting Option E when typing 'm' -> 'e' (part of 'meow')
+        if (ch === 'e' && meowKeyBuffer.endsWith('m')) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+        }
+
+        meowKeyBuffer = (meowKeyBuffer + ch).slice(-4);
+        meowLastKeyTime = now;
+
+        if (meowKeyBuffer === 'meow') {
+          meowKeyBuffer = '';
+          e.stopImmediatePropagation();
+          e.preventDefault();
+          if (meowLocked) {
+            unlockMeowMode();
+          } else {
+            lockMeowMode();
+          }
+        }
+      }, true);
+    }
+
+    function startMeowMode() {
+      setupMeowKeystrokeListener();
+      if (meowLocked) {
+        enableMeowMode();
+      }
+      document.body.classList.remove('meow-booting');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
