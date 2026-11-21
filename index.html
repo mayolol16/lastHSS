@@ -1165,7 +1165,9 @@
         <span>HSS 3 Final Exam</span>
         <span class="brand-badge">Health Systems Science</span>
         <div class="set-picker">
-          <a href="index.html" onclick="event.preventDefault()" class="set-pill-btn active" id="set1NavBtn" title="HSS Semester 3 Final Exam (120 Questions)">Final Exam (120Q)</a>
+          <a href="index.html" onclick="navigateToSet(1, event)" class="set-pill-btn active" id="set1NavBtn" title="HSS Semester 3 Final Exam Bank (120 Questions)">Final Exam (120Q)</a>
+          <a href="practice.html" onclick="navigateToSet(2, event)" class="set-pill-btn " id="set2NavBtn" title="Official Practice Questions Doc (16Q) & Lecture Quiz Reviews (12Q)">Practice & Quizzes (28Q)</a>
+          <a href="all.html" onclick="navigateToSet(3, event)" class="set-pill-btn " id="set3NavBtn" title="All HSS Questions Combined (148 Questions)">All Combined (148Q)</a>
         </div>
       </div>
     </div>
@@ -1311,7 +1313,7 @@
         <!-- Hotkeys -->
         <div class="stat-card" style="font-size: 0.74rem; margin-top: auto;">
           <div style="font-weight:700; color:var(--text-dim); text-transform:uppercase; margin-bottom:2px;">Shortcuts</div>
-          <div class="stat-row"><span class="stat-label">1 - 4 / A - D</span><span class="stat-value">Choose Option</span></div>
+          <div class="stat-row"><span class="stat-label">1 - 5 / A - E</span><span class="stat-value">Choose Option</span></div>
           <div class="stat-row"><span class="stat-label">H</span><span class="stat-value">Highlight</span></div>
           <div class="stat-row"><span class="stat-label">S</span><span class="stat-value">Cross-Out</span></div>
           <div class="stat-row"><span class="stat-label">F</span><span class="stat-value">Flag</span></div>
@@ -2068,7 +2070,7 @@
       if (missedQuestions.length === 0) {
         promptText += `I scored 100% on this block! Please provide 5 ultra-challenging integrative clinical vignettes combining Change Management, Healthcare Policy & Economics, Coding & Payment Models, Health Law & Ethics, and Clinical Informatics.\n`;
       } else {
-        promptText += `I missed ${missedQuestions.length} questions on this practice exam. My weak areas are distributed as follows:\n`;
+        promptText += `I missed ${missedQuestions.length} questions on this practice set. My weak areas are distributed as follows:\n`;
         for (const [dom, count] of Object.entries(domainMissCount)) {
           promptText += `- ${dom}: ${count} missed questions\n`;
         }
@@ -2185,7 +2187,7 @@
           }
         } else if (e.key.toLowerCase() === 'r') {
           openScoreReport();
-        } else if (['1', '2', '3', '4'].includes(e.key)) {
+        } else if (['1', '2', '3', '4', '5'].includes(e.key)) {
           const idx = parseInt(e.key, 10) - 1;
           const q = filteredQuestions[currentIndex];
           if (q && q.options[idx]) {
@@ -2193,7 +2195,7 @@
             if (appMode === 'exam' && examSubmitted) return;
             selectAnswer(q.options[idx].id);
           }
-        } else if (['a', 'b', 'c', 'd'].includes(e.key.toLowerCase())) {
+        } else if (['a', 'b', 'c', 'd', 'e'].includes(e.key.toLowerCase())) {
           const letter = e.key.toUpperCase();
           const q = filteredQuestions[currentIndex];
           if (q && q.options.some(o => o.id === letter)) {
@@ -2221,8 +2223,30 @@
       return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     }
 
+    // --- Set Navigation Helper ---
+    function navigateToSet(setNum, e) {
+      if (e) e.preventDefault();
+      const currentPath = window.location.pathname;
+      const isStandalone = currentPath.includes('HSS_');
+      let target = '';
+      if (setNum === 1) {
+        target = isStandalone ? 'HSS_120Q_Interactive_Exam.html' : 'index.html';
+      } else if (setNum === 2) {
+        target = isStandalone ? 'HSS_28Q_Practice_Interactive_Exam.html' : 'practice.html';
+      } else if (setNum === 3) {
+        target = isStandalone ? 'HSS_148Q_Combined_Interactive_Exam.html' : 'all.html';
+      }
+      window.location.href = target;
+    }
+
     // --- Meow Password Lock Mode ---
     let meowLocked = true;
+    try {
+      if (sessionStorage.getItem('hss_meow_unlocked') === '1') {
+        meowLocked = false;
+      }
+    } catch (e) {}
+
     let isApplyingMeow = false;
     let meowObserver = null;
     const originalTitle = document.title;
@@ -2265,7 +2289,6 @@
         if (root.nodeType !== Node.ELEMENT_NODE) return;
         if (root.id === 'meowLockBar' || root.closest('#meowLockBar')) return;
 
-        // Meow title attributes too
         const titleEls = root.hasAttribute && root.hasAttribute('title')
           ? [root, ...root.querySelectorAll('[title]')]
           : Array.from(root.querySelectorAll('[title]'));
@@ -2284,7 +2307,6 @@
           }
         });
 
-        // Meow textarea value if present (e.g. Targeted Study Prompt)
         const textareas = root.tagName === 'TEXTAREA'
           ? [root]
           : Array.from(root.querySelectorAll('textarea'));
@@ -2297,7 +2319,6 @@
           }
         });
 
-        // Walk all text nodes
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
         let node;
         while ((node = walker.nextNode())) {
@@ -2323,6 +2344,11 @@
     }
 
     function startMeowMode() {
+      if (!meowLocked) {
+        document.getElementById('meowLockBar').classList.add('unlocked');
+        document.body.classList.remove('meow-booting');
+        return;
+      }
       document.title = meowifyString(originalTitle);
       applyMeowToNode(document.body);
       document.body.classList.remove('meow-booting');
@@ -2344,7 +2370,6 @@
         characterData: true
       });
 
-      // Also wrap openGeminiModal so textarea text is meowed while locked
       const origOpenGemini = window.openGeminiModal;
       if (typeof origOpenGemini === 'function') {
         window.openGeminiModal = function() {
@@ -2368,13 +2393,15 @@
 
       if (val === 'meow') {
         meowLocked = false;
+        try {
+          sessionStorage.setItem('hss_meow_unlocked', '1');
+        } catch (errStore) {}
         if (meowObserver) {
           meowObserver.disconnect();
           meowObserver = null;
         }
         document.title = originalTitle;
 
-        // Restore all tracked text nodes and titles
         meowTrackedTextNodes.forEach(node => {
           const orig = meowOriginalTextNodes.get(node);
           if (orig !== undefined && node.isConnected) {
@@ -2393,7 +2420,6 @@
 
         document.getElementById('meowLockBar').classList.add('unlocked');
 
-        // Re-render dynamic views cleanly in English
         buildCategoryTray();
         renderCurrentQuestion();
         buildSidebarNavigator();

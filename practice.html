@@ -1,0 +1,2448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HSS Semester 3 Official Practice & Lecture Quizzes (28 Questions)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0b1120;
+      --bg-secondary: #131d31;
+      --bg-card: #18233a;
+      --bg-hover: #223252;
+      --border-color: #263859;
+      --border-light: #374e79;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --success: #10b981;
+      --success-glow: rgba(16, 185, 129, 0.2);
+      --error: #f43f5e;
+      --error-glow: rgba(244, 63, 94, 0.2);
+      --warning: #f59e0b;
+      --warning-glow: rgba(245, 158, 11, 0.2);
+      --purple: #a855f7;
+      --purple-glow: rgba(168, 85, 247, 0.25);
+      --indigo: #6366f1;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+      --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.6);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-hover: #f1f5f9;
+      --border-color: #e2e8f0;
+      --border-light: #cbd5e1;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-dim: #94a3b8;
+      --accent: #0284c7;
+      --accent-glow: rgba(2, 132, 199, 0.2);
+      --success: #059669;
+      --success-glow: rgba(5, 150, 105, 0.15);
+      --error: #e11d48;
+      --error-glow: rgba(225, 29, 72, 0.15);
+      --warning: #d97706;
+      --warning-glow: rgba(217, 119, 6, 0.2);
+      --purple: #9333ea;
+      --purple-glow: rgba(147, 51, 234, 0.2);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Header */
+    .exam-header {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      height: 64px;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+      z-index: 50;
+    }
+
+    .header-left, .header-center, .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-title svg {
+      color: var(--accent);
+    }
+
+    .brand-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .set-picker {
+      display: inline-flex;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+
+    .set-pill-btn {
+      padding: 3px 10px;
+      border-radius: 16px;
+      text-decoration: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: inline-block;
+    }
+
+    .set-pill-btn:hover {
+      color: var(--text-main);
+    }
+
+    .set-pill-btn.active {
+      background: var(--accent);
+      color: #0b1120;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+
+    /* Mode Pill Toggle */
+    .mode-toggle-container {
+      display: flex;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .mode-btn {
+      padding: 4px 12px;
+      border-radius: 18px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mode-btn.active {
+      background: var(--accent);
+      color: #0b1120;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+
+    /* Buttons */
+    .btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 7px 13px;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.18s ease;
+      font-family: inherit;
+    }
+
+    .btn:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-icon {
+      padding: 7px 9px;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #0b1120;
+      border-color: transparent;
+    }
+    .btn-accent:hover {
+      background: #7dd3fc;
+      border-color: transparent;
+      color: #0b1120;
+    }
+
+    .btn-purple {
+      background: var(--purple);
+      color: #ffffff;
+      border-color: transparent;
+    }
+    .btn-purple:hover {
+      background: #c084fc;
+      border-color: transparent;
+    }
+
+    .btn-error {
+      background: var(--error);
+      color: #ffffff;
+      border-color: transparent;
+    }
+    .btn-error:hover {
+      background: #fb7185;
+      border-color: transparent;
+    }
+
+    .btn.active-tool {
+      background: #facc15 !important;
+      color: #0b1120 !important;
+      border-color: #facc15 !important;
+      box-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
+    }
+
+    /* Timer */
+    .timer-box {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+      cursor: pointer;
+    }
+    .timer-box svg {
+      color: var(--accent);
+    }
+
+    /* Category Tray */
+    .category-tray {
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      padding: 8px 20px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      flex-shrink: 0;
+      white-space: nowrap;
+      scrollbar-width: thin;
+    }
+
+    .cat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      user-select: none;
+    }
+
+    .cat-pill:hover {
+      background: var(--bg-hover);
+      color: var(--text-main);
+      border-color: var(--border-light);
+    }
+
+    .cat-pill.active {
+      background: var(--accent);
+      color: #0b1120;
+      border-color: var(--accent);
+      font-weight: 700;
+      box-shadow: 0 2px 8px var(--accent-glow);
+    }
+
+    .cat-pill-count {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      padding: 2px 6px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.25);
+    }
+    .cat-pill.active .cat-pill-count {
+      background: rgba(0, 0, 0, 0.3);
+      color: #ffffff;
+    }
+
+    /* Layout: Question on Left/Center, Question Navigator on RIGHT */
+    .exam-layout {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Main Question View */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 24px 32px 100px 32px;
+      position: relative;
+    }
+
+    .question-wrapper {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    /* Question Header Bar - NO GIVEAWAY TAGS */
+    .question-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .q-meta-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .q-badge {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--bg-card);
+      padding: 4px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-flag {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-flag:hover {
+      background: var(--bg-hover);
+      color: var(--text-main);
+    }
+
+    .btn-flag.flagged {
+      background: var(--warning-glow);
+      border-color: var(--warning);
+      color: var(--warning);
+      font-weight: 600;
+    }
+
+    /* Question Stem Card - Clean & Punchy */
+    .stem-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+      user-select: text;
+      position: relative;
+    }
+
+    /* User Highlights */
+    .user-highlight {
+      background-color: rgba(253, 224, 71, 0.45);
+      color: inherit;
+      padding: 2px 3px;
+      border-radius: 3px;
+      cursor: pointer;
+      border-bottom: 2px solid #eab308;
+      transition: background-color 0.15s ease;
+    }
+
+    .user-highlight:hover {
+      background-color: rgba(253, 224, 71, 0.7);
+    }
+
+    /* Floating Highlight Tooltip */
+    .highlight-tooltip {
+      position: absolute;
+      display: none;
+      background: #1e293b;
+      border: 1px solid #facc15;
+      color: #f8fafc;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      z-index: 1000;
+      cursor: pointer;
+      user-select: none;
+      transform: translate(-50%, -100%);
+      margin-top: -8px;
+    }
+
+    .highlight-tooltip:hover {
+      background: #facc15;
+      color: #0b1120;
+    }
+
+    /* Options List - Parallel, Balanced & Reduced */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-item {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.16s ease;
+      position: relative;
+    }
+
+    .option-item:hover:not(.disabled) {
+      border-color: var(--accent);
+      background: var(--bg-hover);
+      transform: translateX(2px);
+    }
+
+    .option-item.selected {
+      border-color: var(--accent);
+      background: var(--accent-glow);
+    }
+
+    .option-item.struck {
+      opacity: 0.4;
+      text-decoration: line-through;
+    }
+
+    .option-item.state-correct {
+      border-color: var(--success) !important;
+      background: var(--success-glow) !important;
+    }
+
+    .option-item.state-incorrect {
+      border-color: var(--error) !important;
+      background: var(--error-glow) !important;
+    }
+
+    .option-letter {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      border: 1.5px solid var(--border-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .option-item:hover:not(.disabled) .option-letter {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .option-item.selected .option-letter {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #0b1120;
+    }
+
+    .option-item.state-correct .option-letter {
+      border-color: var(--success);
+      background: var(--success);
+      color: #0b1120;
+    }
+
+    .option-item.state-incorrect .option-letter {
+      border-color: var(--error);
+      background: var(--error);
+      color: #ffffff;
+    }
+
+    .option-text {
+      flex: 1;
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: var(--text-main);
+    }
+
+    .strike-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-dim);
+      padding: 4px;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0.4;
+      transition: opacity 0.15s ease;
+    }
+
+    .strike-btn:hover {
+      opacity: 1;
+      color: var(--error);
+    }
+
+    /* Explanation Card */
+    .explanation-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-md);
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 10px;
+    }
+
+    .exp-status {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.1rem;
+      font-weight: 800;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+    }
+
+    .exp-status.correct {
+      background: var(--success-glow);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+
+    .exp-status.incorrect {
+      background: var(--error-glow);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+
+    /* Revealed Curricular Tag - shown ONLY after answering */
+    .exp-topic-pill {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .pearl-card {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 14px 18px;
+    }
+
+    .pearl-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .pearl-text {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .exp-section-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .exp-text {
+      font-size: 0.94rem;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .distractor-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .distractor-item {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 0.88rem;
+    }
+
+    .distractor-item.is-correct {
+      border-left: 4px solid var(--success);
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .distractor-item.is-incorrect {
+      border-left: 4px solid var(--error);
+      background: rgba(244, 63, 94, 0.04);
+    }
+
+    .distractor-letter-badge {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      flex-shrink: 0;
+    }
+    .distractor-item.is-correct .distractor-letter-badge {
+      background: var(--success);
+      color: #0b1120;
+    }
+    .distractor-item.is-incorrect .distractor-letter-badge {
+      background: var(--border-color);
+      color: var(--text-muted);
+    }
+
+    .distractor-content {
+      flex: 1;
+      line-height: 1.45;
+    }
+
+    /* RIGHT SIDEBAR: Question Navigator Panel */
+    .exam-sidebar {
+      width: 320px;
+      background: var(--bg-secondary);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: width 0.24s cubic-bezier(0.4, 0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .exam-sidebar.collapsed {
+      width: 0;
+      border-left: none;
+    }
+
+    .sidebar-header {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-card);
+    }
+
+    .sidebar-header h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-main);
+    }
+
+    .sidebar-content {
+      padding: 14px;
+      overflow-y: auto;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .nav-grid-box {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      max-height: 380px;
+      overflow-y: auto;
+      padding: 2px;
+    }
+
+    .grid-btn {
+      height: 38px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-muted);
+      position: relative;
+      transition: all 0.12s ease;
+    }
+
+    .grid-btn:hover {
+      border-color: var(--accent);
+      color: var(--text-main);
+      transform: scale(1.06);
+    }
+
+    .grid-btn.current {
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      font-weight: 800;
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .grid-btn.answered-exam {
+      background: rgba(56, 189, 248, 0.18);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .grid-btn.correct {
+      background: var(--success-glow);
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .grid-btn.incorrect {
+      background: var(--error-glow);
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    .grid-btn.flagged::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--warning);
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+    }
+
+    .stat-value {
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--text-main);
+    }
+
+    /* Sticky Bottom Nav Bar - Question Changing on RIGHT */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 24px;
+      box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+      z-index: 40;
+    }
+
+    .nav-left, .nav-center, .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 820px;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      animation: modalFade 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes modalFade {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-secondary);
+    }
+
+    .modal-header h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .modal-content {
+      padding: 20px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* Score Report Cards */
+    .score-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .score-stat-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .score-stat-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      margin-bottom: 4px;
+    }
+
+    .score-stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .domain-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      margin-bottom: 20px;
+    }
+
+    .domain-table th, .domain-table td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .domain-table th {
+      color: var(--text-dim);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .domain-table tr:hover td {
+      background: var(--bg-hover);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 84px;
+      right: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--accent);
+      color: var(--text-main);
+      padding: 12px 20px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 200;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all 0.25s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .exam-sidebar {
+        display: none;
+      }
+      .main-content {
+        padding: 16px 16px 100px 16px;
+      }
+    }
+
+    /* Meow Password Lock Bar */
+    body.meow-booting {
+      visibility: hidden;
+    }
+
+    .meow-lock-bar {
+      background: linear-gradient(90deg, #1e1b4b 0%, #131d31 50%, #1e1b4b 100%);
+      border-bottom: 1px solid var(--purple);
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-shrink: 0;
+      z-index: 60;
+      box-shadow: 0 2px 14px rgba(168, 85, 247, 0.25);
+    }
+
+    [data-theme="light"] .meow-lock-bar {
+      background: linear-gradient(90deg, #ede9fe 0%, #f8fafc 50%, #ede9fe 100%);
+    }
+
+    .meow-lock-bar.unlocked {
+      display: none;
+    }
+
+    .meow-lock-form {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .meow-lock-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .meow-password-input {
+      background: var(--bg-primary);
+      border: 1.5px solid var(--border-light);
+      color: var(--text-main);
+      padding: 5px 12px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      width: 170px;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .meow-password-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+
+    .meow-password-input.shake {
+      border-color: var(--error);
+      animation: meowShake 0.32s ease;
+    }
+
+    @keyframes meowShake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .meow-unlock-btn {
+      background: var(--purple);
+      color: #ffffff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: var(--radius-md);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      transition: background 0.18s ease, transform 0.15s ease;
+    }
+
+    .meow-unlock-btn:hover {
+      background: #c084fc;
+      transform: translateY(-1px);
+    }
+
+    .meow-error-msg {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--error);
+      min-width: 68px;
+    }
+  </style>
+</head>
+<body data-theme="dark" class="meow-booting">
+
+  <!-- Meow Password Lock Bar -->
+  <div class="meow-lock-bar" id="meowLockBar">
+    <form class="meow-lock-form" id="meowUnlockForm" onsubmit="handleMeowUnlock(event)">
+      <label class="meow-lock-label" for="meowPasswordInput">
+        <span>🐱</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span>Meow:</span>
+      </label>
+      <input
+        type="password"
+        id="meowPasswordInput"
+        class="meow-password-input"
+        placeholder="meow"
+        aria-label="meow"
+        autocomplete="off"
+        autofocus
+      />
+      <button type="submit" class="meow-unlock-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+        <span>Meow</span>
+      </button>
+      <span class="meow-error-msg" id="meowErrorMsg"></span>
+    </form>
+  </div>
+
+  <!-- Header -->
+  <header class="exam-header">
+    <div class="header-left">
+      <div class="brand-title">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+        <span>HSS 3 Final Exam</span>
+        <span class="brand-badge">Health Systems Science</span>
+        <div class="set-picker">
+          <a href="index.html" onclick="navigateToSet(1, event)" class="set-pill-btn " id="set1NavBtn" title="HSS Semester 3 Final Exam Bank (120 Questions)">Final Exam (120Q)</a>
+          <a href="practice.html" onclick="navigateToSet(2, event)" class="set-pill-btn active" id="set2NavBtn" title="Official Practice Questions Doc (16Q) & Lecture Quiz Reviews (12Q)">Practice & Quizzes (28Q)</a>
+          <a href="all.html" onclick="navigateToSet(3, event)" class="set-pill-btn " id="set3NavBtn" title="All HSS Questions Combined (148 Questions)">All Combined (148Q)</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="mode-toggle-container">
+        <button class="mode-btn active" id="modeTutorBtn" onclick="setMode('tutor')" title="Immediate feedback on selection">Tutor Mode</button>
+        <button class="mode-btn" id="modeExamBtn" onclick="setMode('exam')" title="Timed block, answers revealed after submission">Exam Mode</button>
+      </div>
+
+      <div class="timer-box" onclick="toggleTimer()" title="Click to Pause/Resume Timer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span id="timerDisplay">00:00</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button class="btn" id="highlighterToggleBtn" onclick="toggleHighlighterMode()" title="Toggle Text Highlighter (Shortcut H)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 11-6 6v3h3l6-6"/><path d="m22 2-2.5 2.5a2.12 2.12 0 0 1-3 0l-1-1a2.12 2.12 0 0 1 0-3L18 0l4 2z"/></svg>
+        <span>Highlight (H)</span>
+      </button>
+      <button class="btn" id="strikethroughToggleBtn" onclick="toggleStrikethroughMode()" title="Toggle Elimination Tool (Shortcut S)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4H9a3 3 0 0 0-2.83 4"/><path d="M14 12v.01"/><path d="M17.5 12a4.5 4.5 0 0 1-4.5 4.5H8"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+        <span>Cross-Out (S)</span>
+      </button>
+      <button class="btn" onclick="toggleSidebar()" title="Toggle Question Navigator on Right">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        <span>Navigator</span>
+      </button>
+      <button class="btn btn-purple" onclick="openScoreReport()" title="View Performance Scorecard (Shortcut R)">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>Scorecard</span>
+      </button>
+      <button class="btn btn-icon" onclick="toggleTheme()" title="Switch Light/Dark Mode">
+        <svg id="themeIconSun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="themeIconMoon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Category Filter Tray -->
+  <nav class="category-tray" id="categoryTray">
+    <!-- Populated by JS -->
+  </nav>
+
+  <!-- Main Layout: Question in Center/Left, Navigator on RIGHT -->
+  <div class="exam-layout">
+    <!-- Main Question View -->
+    <main class="main-content" id="mainExamContent">
+      <div class="question-wrapper">
+        <!-- Question Meta Bar: NO GIVEAWAYS -->
+        <div class="question-meta-bar">
+          <div class="q-meta-left">
+            <span class="q-badge" id="qBadgeText">Question 1 of 28</span>
+          </div>
+          <button class="btn-flag" id="flagBtn" onclick="toggleFlagCurrentQuestion()" title="Flag for Review (Shortcut F)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+            <span id="flagBtnText">Flag Question</span>
+          </button>
+        </div>
+
+        <!-- Question Stem -->
+        <div class="stem-card" id="questionStemText">
+          Loading question stem...
+        </div>
+
+        <!-- Floating Highlight Tooltip -->
+        <div class="highlight-tooltip" id="highlightTooltip" onclick="applySelectionHighlight()">
+          🖍️ Highlight Selected
+        </div>
+
+        <!-- Options Container -->
+        <div class="options-list" id="optionsList">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Explanation Card -->
+        <div class="explanation-card" id="explanationCard">
+          <div class="exp-status" id="expStatusText">
+            <!-- Correct / Incorrect banner -->
+          </div>
+
+          <!-- Curricular Tag revealed only after answering -->
+          <div>
+            <div class="exp-topic-pill" id="expTopicPill">
+              <span id="expCategoryText" style="color:var(--accent); font-weight:700;"></span> &bull; 
+              <span id="expSubtopicText"></span>
+            </div>
+          </div>
+
+          <div class="pearl-card" id="pearlCard">
+            <div class="pearl-header">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v1"/><path d="M12 21v1"/><path d="M4.22 4.22l.71.71"/><path d="M18.36 18.36l.71.71"/><path d="M1 12h1"/><path d="M21 12h1"/><path d="M4.22 19.78l.71-.71"/><path d="M18.36 5.64l.71-.71"/><circle cx="12" cy="12" r="5"/></svg>
+              <span>High-Yield Concept & Learning Objective</span>
+            </div>
+            <div class="pearl-text" id="pearlText"></div>
+          </div>
+
+          <div>
+            <div class="exp-section-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <span>Comprehensive Rationale</span>
+            </div>
+            <div class="exp-text" id="explanationBody"></div>
+          </div>
+
+          <div>
+            <div class="exp-section-title">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              <span>Option-by-Option Distractor Breakdown</span>
+            </div>
+            <div class="distractor-grid" id="distractorList"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: Question Navigator Panel -->
+    <aside class="exam-sidebar" id="examSidebar">
+      <div class="sidebar-header">
+        <h3>Question Navigator</h3>
+        <span id="sidebarOverallProgress" style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--accent); font-weight: 700;">0/28</span>
+      </div>
+      <div class="sidebar-content">
+        <div class="stat-card">
+          <div class="stat-row">
+            <span class="stat-label">Progress</span>
+            <span class="stat-value" id="sideCompletedVal">0 / 28</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Accuracy</span>
+            <span class="stat-value" id="sideAccuracyVal">0%</span>
+          </div>
+        </div>
+
+        <div style="font-size:0.75rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">
+          Quick Jump (Questions 1 - 28)
+        </div>
+        <div class="nav-grid-box" id="sidebarQuestionGrid">
+          <!-- 120 Question Buttons -->
+        </div>
+
+        <!-- Hotkeys -->
+        <div class="stat-card" style="font-size: 0.74rem; margin-top: auto;">
+          <div style="font-weight:700; color:var(--text-dim); text-transform:uppercase; margin-bottom:2px;">Shortcuts</div>
+          <div class="stat-row"><span class="stat-label">1 - 5 / A - E</span><span class="stat-value">Choose Option</span></div>
+          <div class="stat-row"><span class="stat-label">H</span><span class="stat-value">Highlight</span></div>
+          <div class="stat-row"><span class="stat-label">S</span><span class="stat-value">Cross-Out</span></div>
+          <div class="stat-row"><span class="stat-label">F</span><span class="stat-value">Flag</span></div>
+          <div class="stat-row"><span class="stat-label">&larr; / P, &rarr; / N</span><span class="stat-value">Prev / Next</span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Sticky Bottom Navigation: Controls on RIGHT -->
+  <footer class="bottom-nav">
+    <div class="nav-left">
+      <button class="btn btn-purple" id="examSubmitBtn" style="display:none;" onclick="submitExamBlock()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <span>Submit Exam Block</span>
+      </button>
+      <button class="btn" onclick="openScoreReport()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <span>View Scorecard</span>
+      </button>
+    </div>
+
+    <div class="nav-center">
+      <span id="navProgressBadge" style="font-family:var(--font-mono); font-size:0.85rem; font-weight:700; color:var(--text-muted);">Q 1 / 28</span>
+    </div>
+
+    <!-- Question Changing Controls on the RIGHT -->
+    <div class="nav-right">
+      <button class="btn" id="prevBtn" onclick="prevQuestion()" title="Previous Question (Shortcut Left Arrow or P)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Previous</span>
+      </button>
+      <button class="btn btn-accent" id="nextBtn" onclick="nextQuestion()" title="Next Question (Shortcut Right Arrow or N)">
+        <span>Next Question</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </footer>
+
+  <!-- Scorecard Modal -->
+  <div class="modal-backdrop" id="scoreModal" onclick="closeScoreReport(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <h3>Final Examination Scorecard & Diagnostic Report</h3>
+        </div>
+        <button class="btn btn-icon" onclick="closeScoreReportDirect()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-content">
+        <div class="score-summary-grid">
+          <div class="score-stat-card">
+            <div class="score-stat-num" id="reportAccuracyVal" style="color:var(--accent);">0%</div>
+            <div class="score-stat-label">Accuracy</div>
+          </div>
+          <div class="score-stat-card">
+            <div class="score-stat-num" id="reportCorrectCount" style="color:var(--success);">0</div>
+            <div class="score-stat-label">Correct</div>
+          </div>
+          <div class="score-stat-card">
+            <div class="score-stat-num" id="reportIncorrectCount" style="color:var(--error);">0</div>
+            <div class="score-stat-label">Incorrect</div>
+          </div>
+          <div class="score-stat-card">
+            <div class="score-stat-num" id="reportAnsweredCount" style="color:var(--text-main);">0 / 28</div>
+            <div class="score-stat-label">Completed</div>
+          </div>
+        </div>
+
+        <h4 style="font-size:0.85rem; font-weight:700; text-transform:uppercase; margin-bottom:12px; color:var(--text-muted);">
+          Performance Across Tested Curricular Domains (16 Official Practice + 12 Lecture Quizzes)
+        </h4>
+        <table class="domain-table">
+          <thead>
+            <tr>
+              <th>Curricular Domain</th>
+              <th>Completed</th>
+              <th>Correct</th>
+              <th>Score %</th>
+            </tr>
+          </thead>
+          <tbody id="reportDomainTableBody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+
+        <div style="margin-top:24px; padding-top:16px; border-top:1px solid var(--border-color); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <button class="btn btn-error" onclick="resetExamProgress()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+            <span>Reset Exam Progress</span>
+          </button>
+          <button class="btn btn-purple" onclick="closeScoreReportDirect(); openGeminiModal();">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Generate Targeted Review Prompt</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Targeted Review Prompt Modal -->
+  <div class="modal-backdrop" id="geminiModal" onclick="closeGeminiModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <h3>Targeted Study Prompt (Missed Topics Drill)</h3>
+        </div>
+        <button class="btn btn-icon" onclick="closeGeminiModalDirect()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-content">
+        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px; line-height:1.5;">
+          This prompt compiles every question and specific subtopic you missed on the exam. Copy and paste it directly into Gemini or ChatGPT to drill high-yield clinical vignettes.
+        </p>
+        <textarea id="geminiPromptTextarea" rows="12" readonly style="width:100%; font-family:var(--font-mono); font-size:0.84rem; padding:12px; background:rgba(0,0,0,0.3); border:1px solid var(--border-color); border-radius:var(--radius-sm); color:var(--text-main); line-height:1.5; resize:vertical; margin-bottom:16px;"></textarea>
+        <div style="display:flex; justify-content:flex-end;">
+          <button class="btn btn-purple" onclick="copyGeminiPrompt()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span>Copy Prompt to Clipboard</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastBox">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+    <span id="toastMsg">Notification</span>
+  </div>
+
+  <script>
+    // --- Master 120 Questions Data ---
+    const ALL_QUESTIONS = [{"id": 1, "q_num": "1", "category": "Change Management", "subtopic": "Official Practice Q1 · Kotter's Guiding Coalition & Early Wins", "question": "A regional clinic is planning to implement a new telehealth program to improve access for rural patients. The clinic manager assembles a team consisting of physicians, nurses, IT specialists, and administrative staff. The team meets regularly to identify barriers, communicate the vision, and celebrate early wins. Which change management approach is best illustrated in this scenario?", "options": [{"id": "A", "text": "A hospital administrator implements a new EHR system without consulting staff or explaining its benefits"}, {"id": "B", "text": "A medical director mandates the use of a new surgical protocol without providing training or addressing concerns"}, {"id": "C", "text": "A clinic manager forms a diverse team of doctors, nurses, and IT staff to plan and oversee the rollout of a new telehealth program"}, {"id": "D", "text": "A healthcare system CEO announces cost-cutting measures and immediately begins layoffs across departments"}], "correct_answer": "C", "key_concept": "Effective change management (Kotter's model) builds a diverse multidisciplinary guiding coalition, identifies barriers, communicates a clear vision, and celebrates short-term wins.", "explanation": "Forming a cross-functional team of physicians, nurses, IT specialists, and administrators to collaboratively plan, troubleshoot barriers, communicate vision, and celebrate early wins exemplifies participatory, Kotter-aligned change management—unlike unilateral top-down mandates.", "distractors": {"A": "Unilateral top-down EHR rollout without consultation or explaining benefits ignores stakeholder buy-in and fuels resistance.", "B": "Mandating a protocol without training or addressing concerns violates core change management principles and promotes failure.", "C": "Correct. Forming a diverse multidisciplinary team to plan and oversee the telehealth rollout reflects collaborative Kotter-style change management.", "D": "Sudden top-down layoffs exemplify disruptive unilateral restructuring rather than participatory change leadership."}}, {"id": 2, "q_num": "2", "category": "Clinical Informatics", "subtopic": "Official Practice Q2 · Augmented Intelligence in Clinical Informatics", "question": "Which of the following best describes the concept of artificial intelligence in clinical informatics?", "options": [{"id": "A", "text": "Replacing physicians with AI systems"}, {"id": "B", "text": "Enhancing human decision-making with computational tools"}, {"id": "C", "text": "Automating billing and coding processes"}, {"id": "D", "text": "Using wearable devices to monitor patients"}, {"id": "E", "text": "Creating virtual reality simulations for training"}], "correct_answer": "B", "key_concept": "In clinical informatics, AI functions as 'augmented intelligence'—computational tools that enhance and support human clinical decision-making rather than replacing clinicians.", "explanation": "Clinical informatics frames artificial intelligence as augmented intelligence: computational algorithms analyze patterns, stratify risk, and synthesize information to enhance—not replace—human clinical judgment.", "distractors": {"A": "AI is designed to augment clinicians ('the machine can learn, but it can't think'), not replace physicians.", "B": "Correct. Enhancing human decision-making with computational tools defines AI in clinical informatics.", "C": "Billing/coding automation is a narrow administrative use case rather than the core definition of clinical AI.", "D": "Wearable devices are remote patient monitoring hardware rather than the definition of artificial intelligence.", "E": "Virtual reality simulations are educational tools, not the broad concept of AI in clinical informatics."}}, {"id": 3, "q_num": "3", "category": "Change Management", "subtopic": "Official Practice Q3 · Integrating Behavioral Science & QI", "question": "A hospital aims to reduce medication errors. A multidisciplinary team is formed to design a safety initiative. They use Plan-Do-Study-Act (PDSA) cycles to test interventions and emphasize how the changes will improve patient outcomes and reduce staff stress. Which approach best integrates behavioral science and quality improvement?", "options": [{"id": "A", "text": "Offering financial incentives to departments that adopt the new procedures the fastest"}, {"id": "B", "text": "Conducting a one-time training session on the new procedures and monitoring error rates"}, {"id": "C", "text": "Sending a memo to all staff detailing the new safety procedures and expecting immediate compliance"}, {"id": "D", "text": "Forming a cross-functional team to design the initiative, using PDSA cycles for testing, and emphasizing how it improves patient outcomes and reduces staff stress"}], "correct_answer": "D", "key_concept": "Pairing iterative QI methods (cross-functional teams + PDSA cycles) with behavioral motivation (purpose, patient outcomes, and lower staff stress) aligns both mind and heart.", "explanation": "Combining multidisciplinary design, iterative PDSA testing (directing the rational mind), and explicit framing around better patient outcomes and lower clinician stress (motivating the emotional heart) best integrates behavioral science and quality improvement.", "distractors": {"A": "Speed-based financial bonuses can incentivize superficial compliance or unsafe shortcuts rather than sustainable QI.", "B": "A single training session without iterative testing or ongoing behavioral reinforcement rarely produces lasting change.", "C": "Top-down memos demanding immediate compliance ignore both behavioral motivation and local workflow barriers.", "D": "Correct. Cross-functional design, iterative PDSA testing, and appealing to patient outcomes and staff well-being unite QI with behavioral science."}}, {"id": 4, "q_num": "4", "category": "Healthcare Policy & Economics", "subtopic": "Official Practice Q4 · OBBBA & Ethical Policymaking", "question": "A federal health policy known as OBBBA has led to significant reimbursement cuts and increased uninsured rates, disproportionately affecting vulnerable populations. A policy analyst recommends engaging community stakeholders and applying ethical review processes before implementing further changes. Which strategy best addresses the tension between legislative intent and unintended harm?", "options": [{"id": "A", "text": "Implementing stakeholder-informed policymaking and ethical scrutiny processes"}, {"id": "B", "text": "Increasing funding for rural hospitals without changing other aspects of OBBBA"}, {"id": "C", "text": "Relying solely on Congressional Budget Office (CBO) data for policy decisions"}, {"id": "D", "text": "Maintaining the current approach to policymaking without additional engagement"}], "correct_answer": "A", "key_concept": "Stakeholder-informed policymaking combined with structured ethical scrutiny helps surface and mitigate unintended harms to vulnerable populations before policy rollout.", "explanation": "Engaging affected communities and institutionalizing ethical review processes directly bridges the gap between fiscal/legislative intent and disproportionate real-world harm to vulnerable patients.", "distractors": {"A": "Correct. Stakeholder-informed policymaking and ethical scrutiny directly address unintended harms before implementation.", "B": "Narrow rural funding alone leaves broader eligibility losses and systemic inequities unaddressed.", "C": "CBO fiscal scores provide vital projections but cannot substitute for community input and ethical evaluation.", "D": "Maintaining the status quo fails to address documented unintended harms."}}, {"id": 5, "q_num": "5", "category": "Clinical Informatics", "subtopic": "Official Practice Q5 · SMART on FHIR Integration", "question": "A hospital system is implementing SMART on FHIR applications to enhance EHR functionality. Which of the following best describes the benefit of this integration?", "options": [{"id": "A", "text": "Enables direct billing from mobile devices"}, {"id": "B", "text": "Allows patients to edit their clinical notes"}, {"id": "C", "text": "Facilitates standardized app development using interoperable data"}, {"id": "D", "text": "Prevents data sharing across organizations"}, {"id": "E", "text": "Eliminates the need for CDS tools"}], "correct_answer": "C", "key_concept": "SMART on FHIR enables standardized, substitutable third-party clinical applications to launch securely inside EHRs using interoperable FHIR data APIs.", "explanation": "SMART (Substitutable Medical Applications, Reusable Technologies) on FHIR provides a secure open standard allowing developers to build modular clinical apps once and deploy them across different EHR platforms using interoperable data.", "distractors": {"A": "SMART on FHIR focuses on clinical data interoperability and app integration rather than mobile billing.", "B": "Patients cannot directly overwrite or edit clinicians' clinical notes through SMART on FHIR.", "C": "Correct. It facilitates standardized app development powered by interoperable EHR data.", "D": "SMART on FHIR promotes secure, authorized data exchange rather than blocking sharing.", "E": "SMART on FHIR often delivers and enhances CDS tools rather than eliminating them."}}, {"id": 6, "q_num": "6", "category": "Healthcare Policy & Economics", "subtopic": "Official Practice Q6 · OBBBA Rural Hospital Funding Impact", "question": "A rural hospital administrator is concerned about the impact of OBBBA, which includes $10B in annual funding but also $910B in reimbursement cuts and an increase of 14 million uninsured individuals. Which assessment most accurately reflects the effectiveness of this funding?", "options": [{"id": "A", "text": "OBBBA's rural hospital funding is insufficient to counteract the $910B in reimbursement cuts and 14M newly uninsured"}, {"id": "B", "text": "OBBBA's $10B annual allocation will fully offset reimbursement cuts and increased uninsured rates"}, {"id": "C", "text": "The funding is likely to prevent most rural hospital closures but may not address all service reductions"}, {"id": "D", "text": "The impact of OBBBA's rural hospital funding cannot be accurately assessed without more long-term data"}], "correct_answer": "A", "key_concept": "OBBBA's $10B annual rural hospital fund is dwarfed by $910B in reimbursement cuts and ~14 million newly uninsured individuals, leaving safety-net hospitals severely strained.", "explanation": "Comparing $10B/year in rural hospital stabilization funding against $910B in federal reimbursement reductions and 14 million newly uninsured patients shows the targeted allocation is grossly insufficient to offset uncompensated care and revenue loss.", "distractors": {"A": "Correct. The $10B annual funding is vastly insufficient to counteract $910B in cuts and 14M newly uninsured patients.", "B": "The scale mismatch makes fully offsetting the cuts and uncompensated care mathematically impossible.", "C": "With $910B in cuts and millions losing coverage, the fund cannot reliably prevent most rural closures.", "D": "The massive quantitative imbalance is already evident from fiscal projections without waiting for decades of data."}}, {"id": 7, "q_num": "7", "category": "Health Law & Ethics", "subtopic": "Official Practice Q7 · Law vs. Ethics in Healthcare", "question": "A physician faces a dilemma where a legally permissible action conflicts with their ethical obligation to a patient. Which statement best describes the relationship between law and ethics in healthcare?", "options": [{"id": "A", "text": "Law governs behavior while ethics guides values, but they may sometimes conflict"}, {"id": "B", "text": "Law and ethics are identical concepts in healthcare with no distinctions"}, {"id": "C", "text": "Ethics always takes precedence over law in medical decision-making"}, {"id": "D", "text": "Law and ethics are separate and unrelated in healthcare practice"}], "correct_answer": "A", "key_concept": "Health law sets enforceable behavioral boundaries while bioethics guides moral values and clinical duties; they usually align, but can conflict.", "explanation": "Law establishes the statutory/regulatory floor governing permissible conduct, while medical ethics articulates aspirational moral obligations to patients and society. Clinicians must recognize when the two diverge and seek structured guidance.", "distractors": {"A": "Correct. Law governs behavior and ethics guides values; although complementary, they can occasionally conflict.", "B": "An action can be legally permissible yet ethically troubling (or vice versa), so they are not identical.", "C": "Ethics does not automatically grant legal immunity or override statutory requirements.", "D": "Law and ethics deeply intersect throughout everyday clinical practice (consent, confidentiality, end-of-life care)."}}, {"id": 8, "q_num": "8", "category": "Health Law & Ethics", "subtopic": "Official Practice Q8 · Mandatory Public Health Reporting", "question": "A physician is treating a patient who has recently been diagnosed with HIV. What is the physician’s legal obligation regarding reporting this diagnosis?", "options": [{"id": "A", "text": "No reporting is required"}, {"id": "B", "text": "Report to the patient’s employer"}, {"id": "C", "text": "Report to public health authorities"}, {"id": "D", "text": "Report to the patient’s family"}], "correct_answer": "C", "key_concept": "Mandatory public health reporting statutes override routine confidentiality for designated communicable diseases such as HIV, requiring notification of public health authorities.", "explanation": "State public health laws legally mandate reporting newly diagnosed HIV cases to state or local public health authorities for epidemiological surveillance and confidential partner services.", "distractors": {"A": "HIV is a legally reportable communicable disease in all U.S. jurisdictions.", "B": "Disclosing an HIV diagnosis to an employer is an unlawful HIPAA breach.", "C": "Correct. Physicians have a legal duty to report HIV diagnoses to public health authorities.", "D": "Physicians may not disclose an adult patient's HIV status to family without authorization or narrow public health procedures."}}, {"id": 9, "q_num": "9", "category": "Health Law & Ethics", "subtopic": "Official Practice Q9 · Evolution of the Hippocratic Oath", "question": "A medical ethics seminar compares the original Hippocratic Oath to modern versions. Students note that some ethical positions have evolved. Which inconsistency is most notable?", "options": [{"id": "A", "text": "The original oath promoted euthanasia while modern ethics generally opposes it"}, {"id": "B", "text": "The original oath encouraged knowledge sharing while modern ethics discourages it"}, {"id": "C", "text": "The original oath prohibited abortions while many modern versions have modified this stance"}, {"id": "D", "text": "The original oath emphasized patient confidentiality while modern ethics does not"}], "correct_answer": "C", "key_concept": "Medical oaths evolve with society: the classical Hippocratic Oath explicitly prohibited abortion (and cutting for stone), whereas modern versions such as the Declaration of Geneva omit or modify those clauses.", "explanation": "The classical Hippocratic Oath explicitly forbade giving a woman an abortive remedy, whereas modern medical oaths (like the Declaration of Geneva and contemporary medical school oaths) have removed or modified this prohibition while retaining confidentiality and adding autonomy and clinician well-being.", "distractors": {"A": "Backwards: the original Hippocratic Oath strictly prohibited giving a deadly drug (euthanasia).", "B": "The classical oath restricted teaching to a sworn guild, whereas the 2017 Declaration of Geneva explicitly pledges to share medical knowledge.", "C": "Correct. The original oath prohibited abortion, whereas many modern versions have modified or omitted this stance.", "D": "Patient confidentiality remains a foundational pillar of modern bioethics and HIPAA law."}}, {"id": 10, "q_num": "10", "category": "Health Law & Ethics", "subtopic": "Official Practice Q10 · HIPAA Right of Access", "question": "A patient requests access to their medical records. The hospital denies the request citing HIPAA. What is the correct interpretation?", "options": [{"id": "A", "text": "HIPAA prohibits patient access"}, {"id": "B", "text": "HIPAA allows access with written authorization"}, {"id": "C", "text": "HIPAA mandates patient access to their records"}, {"id": "D", "text": "HIPAA only applies to electronic records"}], "correct_answer": "C", "key_concept": "The HIPAA Privacy Rule (Right of Access) mandates that patients have a legal right to inspect and obtain copies of their own medical records; citing HIPAA to block a patient is a misapplication of the law.", "explanation": "HIPAA was explicitly designed to protect patient rights—including mandating that covered entities grant patients timely access to their own medical records (further reinforced by the 21st Century Cures Act). Denying a patient their own chart 'because of HIPAA' is legally incorrect.", "distractors": {"A": "HIPAA guarantees—not prohibits—patients' access to their own health information.", "B": "Written authorization is required to disclose PHI to third parties (e.g., employers), whereas HIPAA directly mandates patients' own right of access.", "C": "Correct. HIPAA mandates patient access to their own medical records.", "D": "HIPAA protects PHI in all formats—paper, verbal, and electronic."}}, {"id": 11, "q_num": "11", "category": "Health Law & Ethics", "subtopic": "Official Practice Q11 · Limits of Law in Clinical Ethics", "question": "During a clinical ethics round, a resident asks whether legal guidelines are sufficient for making ethical decisions. Which critique best addresses the limitations of relying solely on law?", "options": [{"id": "A", "text": "Legal guidelines are proactive and anticipate all possible ethical dilemmas"}, {"id": "B", "text": "Physicians rarely encounter situations without a clear legal precedent"}, {"id": "C", "text": "Laws cannot create a comprehensive playbook for the complexities that arise in the medical field"}, {"id": "D", "text": "Laws are always clear and easy to interpret in medical situations"}], "correct_answer": "C", "key_concept": "Law is reactive and sets minimum boundaries; it cannot provide an exhaustive playbook for every nuanced bedside dilemma, making bioethical reasoning indispensable.", "explanation": "Clinical medicine continually generates novel, context-rich moral dilemmas (emerging technologies, nuanced family dynamics, end-of-life gray zones) that statutory law lags behind or leaves ambiguous. Therefore, law alone cannot serve as a complete ethical playbook.", "distractors": {"A": "Law is largely reactive rather than proactive and cannot anticipate every emerging clinical dilemma.", "B": "Clinicians frequently encounter gray zones lacking direct statutory or judicial precedent.", "C": "Correct. Laws cannot provide a comprehensive playbook for all clinical complexities, requiring ethical reasoning.", "D": "Medical statutes and regulations are frequently complex, state-dependent, and open to interpretation."}}, {"id": 12, "q_num": "12", "category": "Clinical Informatics", "subtopic": "Official Practice Q12 · Evaluating Clinical AI Adoption", "question": "A hospital is considering implementing an AI tool to detect early signs of sepsis. After a pilot program, they observe a significant drop in sepsis-related mortality. Which outcome best justifies adopting the technology?", "options": [{"id": "A", "text": "Decreased mortality rates for sepsis patients"}, {"id": "B", "text": "Increased revenue from sepsis-related billing"}, {"id": "C", "text": "Reduced alert fatigue for clinicians"}, {"id": "D", "text": "Improved compliance with sepsis treatment protocols"}], "correct_answer": "A", "key_concept": "The strongest justification for adopting clinical informatics or AI technology is demonstrated improvement in hard patient-centered clinical outcomes such as decreased mortality.", "explanation": "While process metrics (protocol compliance), workflow metrics (alert fatigue), and financial impact matter, a validated reduction in hard clinical outcomes—specifically sepsis-related patient mortality—is the gold-standard justification for deploying clinical AI.", "distractors": {"A": "Correct. A significant decrease in sepsis-related mortality is the primary patient-centered outcome justifying adoption.", "B": "Billing revenue is secondary and never the primary clinical justification for safety technology.", "C": "The pilot specifically demonstrated lower mortality, and reducing alert fatigue is a usability metric rather than the primary clinical outcome here.", "D": "Protocol compliance is a process measure, whereas reduced mortality is the definitive patient outcome."}}, {"id": 13, "q_num": "13", "category": "Healthcare Policy & Economics", "subtopic": "Official Practice Q13 · ACA Readmission Penalties (HRRP)", "question": "A 60-year-old man with chronic heart failure is hospitalized twice in one month. Under ACA provisions, what financial consequence may the hospital face?", "options": [{"id": "A", "text": "Increased reimbursement"}, {"id": "B", "text": "No change in payment"}, {"id": "C", "text": "Penalty for readmission"}, {"id": "D", "text": "Bonus for patient volume"}, {"id": "E", "text": "Tax exemption"}], "correct_answer": "C", "key_concept": "Under the ACA's Hospital Readmissions Reduction Program (HRRP), CMS penalizes hospitals with excess 30-day readmissions for conditions including heart failure.", "explanation": "To align hospital incentives with transitional care quality, the ACA established the Hospital Readmissions Reduction Program (HRRP), reducing Medicare DRG payments when hospitals have higher-than-expected 30-day readmission rates for heart failure and other target conditions.", "distractors": {"A": "Preventable readmissions reduce rather than increase hospital reimbursement under ACA value-based programs.", "B": "Excess 30-day readmissions trigger direct Medicare payment reductions rather than neutral payment.", "C": "Correct. Under the ACA's HRRP, hospitals face financial penalties for excessive 30-day readmissions.", "D": "The ACA shifted Medicare away from volume bonuses toward quality and readmission accountability.", "E": "Hospital tax-exempt status is unrelated to 30-day readmission adjustments."}}, {"id": 14, "q_num": "14", "category": "Clinical Informatics", "subtopic": "Official Practice Q14 · EHR Interoperability Barriers", "question": "Which of the following is a major challenge in achieving interoperability among EHR systems?", "options": [{"id": "A", "text": "Lack of physician interest"}, {"id": "B", "text": "Absence of standardized data formats"}, {"id": "C", "text": "Overuse of wearable devices"}, {"id": "D", "text": "Excessive patient engagement"}, {"id": "E", "text": "High cost of mobile applications"}], "correct_answer": "B", "key_concept": "A primary technical barrier to EHR interoperability is inconsistent or absent standardized data formats and terminologies across proprietary vendor platforms.", "explanation": "Different EHR vendors and health systems have historically stored clinical data in proprietary, incompatible schemas. Achieving seamless interoperability requires universal adoption of standardized data formats and APIs (such as HL7 FHIR, SNOMED CT, and LOINC).", "distractors": {"A": "Clinicians strongly desire cross-system clinical data access to care safely for patients.", "B": "Correct. Lack of standardized data formats across disparate EHR systems is a foundational barrier to interoperability.", "C": "Wearable use is not the core barrier blocking hospital-to-hospital EHR interoperability.", "D": "Patient engagement supports rather than hinders health data exchange.", "E": "Mobile app pricing is unrelated to core enterprise EHR interoperability standards."}}, {"id": 15, "q_num": "15", "category": "Health Law & Ethics", "subtopic": "Official Practice Q15 · Physician Payments Sunshine Act", "question": "A physician receives a small gift from a pharmaceutical representative after attending a sponsored lunch. According to the Physician Payments Sunshine Act, what is the physician required to do?", "options": [{"id": "A", "text": "Accept the gift without disclosure"}, {"id": "B", "text": "Report the gift to the hospital ethics committee"}, {"id": "C", "text": "Refuse the gift to avoid any conflict of interest"}, {"id": "D", "text": "Disclose the gift to CMS for public reporting"}], "correct_answer": "D", "key_concept": "The Physician Payments Sunshine Act promotes transparency by requiring disclosure of pharmaceutical/device transfers of value to CMS for public reporting on Open Payments.", "explanation": "The Sunshine Act mandates public disclosure of industry payments, meals, and gifts to CMS (Open Payments) to illuminate financial conflicts of interest. (Note: In statutory practice, drug/device manufacturers submit the Open Payments reports to CMS for items >$10 and physicians can review/dispute entries—making CMS public disclosure the key principle tested here.)", "distractors": {"A": "The Sunshine Act specifically ended undisclosed industry transfers of value.", "B": "Sunshine Act disclosures go to CMS Open Payments, not to an internal hospital ethics committee.", "C": "The Sunshine Act enforces public transparency rather than imposing a federal ban on all gifts or meals.", "D": "Correct. The Sunshine Act centers on disclosure of industry gifts/payments to CMS for public reporting."}}, {"id": 16, "q_num": "16", "category": "Health Law & Ethics", "subtopic": "Official Practice Q16 · HIPAA Confidentiality & Employer Requests", "question": "A 42-year-old man comes to the physician for a follow-up visit for major depressive disorder. He works as a shift supervisor at a manufacturing plant and began a medical leave of absence 2 weeks ago. He reports improved sleep and mood since his sertraline dose was increased. The next day, the physician receives a phone call from the human resources manager at the patient’s company. The manager says the company needs the patient’s diagnosis, current medications, and expected return-to-work date to process his short-term disability claim and plan staffing. The patient has not signed any release of information. Which of the following is the most appropriate response by the physician?", "options": [{"id": "A", "text": "Confirm that the patient is under the physician’s care but decline to disclose his diagnosis"}, {"id": "B", "text": "Disclose the information because it is needed to process a disability benefit claim"}, {"id": "C", "text": "Provide only the expected return-to-work date because it does not reveal the diagnosis"}, {"id": "D", "text": "Refer the manager to the company’s occupational health physician to request the records"}, {"id": "E", "text": "Decline to provide any information and discuss the employer’s request with the patient"}], "correct_answer": "E", "key_concept": "Under HIPAA, employers have NO right to any Protected Health Information—not even confirming a patient-physician relationship or return-to-work date—without explicit patient authorization.", "explanation": "Because the patient has not signed a release of information, HIPAA prohibits disclosing ANY PHI to an employer—including confirming that the individual is a patient, giving a return-to-work date, or sharing diagnosis/medications. The physician must politely decline to confirm or share any information and notify the patient so they can decide whether to sign an authorization.", "distractors": {"A": "Even confirming that someone is your patient (especially to a psychiatrist/clinician treating depression) is an unauthorized disclosure of PHI.", "B": "Processing an employer disability benefit claim does not override HIPAA; written patient authorization is still required.", "C": "A return-to-work date is PHI and implicitly confirms the patient is under medical care; it cannot be disclosed without consent.", "D": "An occupational health physician employed by the company also cannot access outside treatment records without signed patient authorization.", "E": "Correct. Decline to confirm or release any information without authorization and discuss the employer's request directly with the patient."}}, {"id": 17, "q_num": "17", "category": "Change Management", "subtopic": "Lecture Quiz · Goal of Change Management", "question": "Which of the following best describes the primary goal of change management in healthcare?", "options": [{"id": "A", "text": "To reduce staff workload"}, {"id": "B", "text": "To improve patient satisfaction scores"}, {"id": "C", "text": "To align organizational processes with strategic goals"}, {"id": "D", "text": "To increase hospital revenue"}], "correct_answer": "C", "key_concept": "Change management purposefully aligns an organization's processes, structures, and workflows with its strategic goals to learn, improve, and transform.", "explanation": "From the Change Management Quiz Review (Policy & Economics Part 1, Slide 4): organizational change management is the structured process of aligning organizational processes, structures, and behaviors with overarching strategic goals.", "distractors": {"A": "Workflow efficiency may be a secondary benefit, not the overarching definition of change management.", "B": "Patient satisfaction is one potential outcome metric rather than the primary structural goal of change management.", "C": "Correct. Aligning organizational processes with strategic goals is the primary goal of change management.", "D": "Revenue growth alone does not define health care change management."}}, {"id": 18, "q_num": "18", "category": "Change Management", "subtopic": "Lecture Quiz · Kotter's Guiding Coalition", "question": "Which of the following best describes the 'guiding coalition' in Kotter’s model?", "options": [{"id": "A", "text": "A group of external consultants"}, {"id": "B", "text": "A team of senior executives only"}, {"id": "C", "text": "A diverse group of influential stakeholders"}, {"id": "D", "text": "The hospital board of directors"}], "correct_answer": "C", "key_concept": "Kotter's guiding coalition is a diverse, cross-hierarchical group of influential internal stakeholders who steer and champion organizational transformation.", "explanation": "From the Change Management Quiz Review (Policy & Economics Part 1, Slide 4): Kotter emphasizes assembling a diverse group of influential stakeholders across roles and levels—beyond the usual executive hierarchy—to drive change.", "distractors": {"A": "External consultants lack internal relational influence and long-term operational ownership.", "B": "An executives-only team misses critical frontline clinical insight and broad credibility.", "C": "Correct. A guiding coalition is a diverse group of influential stakeholders spanning roles and hierarchy levels.", "D": "The hospital board handles high-level governance rather than frontline transformation steering."}}, {"id": 19, "q_num": "19", "category": "Healthcare Policy & Economics", "subtopic": "Lecture Quiz · ACA Medicaid Expansion Eligibility", "question": "A 45-year-old woman with diabetes is unable to afford her medications. She recently lost her job and health insurance. Which government-sponsored program is most likely to provide her with coverage if she lives in a state that expanded Medicaid under the ACA?", "options": [{"id": "A", "text": "Medicare"}, {"id": "B", "text": "TRICARE"}, {"id": "C", "text": "Medicaid"}, {"id": "D", "text": "CHIP"}, {"id": "E", "text": "Private insurance"}], "correct_answer": "C", "key_concept": "In ACA Medicaid expansion states, low-income non-elderly adults (up to 138% FPL) qualify for Medicaid when they lose employment and coverage.", "explanation": "From the Policy I Quiz Review (Policy & Economics Part 2, Slide 3): ACA Medicaid expansion extends coverage to low-income adults under age 65 (up to 138% FPL), making Medicaid the safety-net coverage program for this 45-year-old woman.", "distractors": {"A": "Medicare covers adults 65+, long-term SSDI recipients, and patients with ESRD or ALS.", "B": "TRICARE covers active-duty military service members, retirees, and eligible dependents.", "C": "Correct. Medicaid provides coverage for low-income adults in states that expanded Medicaid under the ACA.", "D": "CHIP (Children's Health Insurance Program) covers children (and in some states pregnant individuals), not a non-pregnant 45-year-old adult.", "E": "Private insurance is not a government-sponsored safety-net program."}}, {"id": 20, "q_num": "20", "category": "Healthcare Policy & Economics", "subtopic": "Lecture Quiz · Political Will in Health Policy", "question": "Which of the following best describes the role of political will in health policy formation?", "options": [{"id": "A", "text": "It is irrelevant to policy success"}, {"id": "B", "text": "It refers to public support and decision-maker commitment"}, {"id": "C", "text": "It is the scientific evidence base"}, {"id": "D", "text": "It is the funding mechanism"}, {"id": "E", "text": "It is the legal framework"}], "correct_answer": "B", "key_concept": "Health policy requires three aligned forces: scientific evidence base, social strategy, and political will (public understanding/support and decision-maker commitment).", "explanation": "From the Policy I Quiz Review (Policy & Economics Part 2, Slide 4): political will represents the public support and policymaker commitment required to mobilize resources and turn an evidence-based social strategy into enacted policy.", "distractors": {"A": "Without political will, even well-evidenced policies stall unfunded.", "B": "Correct. Political will refers to public support and decision-maker commitment to act and allocate resources.", "C": "The scientific evidence base is a separate pillar providing sound data on the problem.", "D": "Funding mechanisms flow from political will, rather than being synonymous with it.", "E": "The legal framework is the statutory output enacted once political will aligns."}}, {"id": 21, "q_num": "21", "category": "Healthcare Policy & Economics", "subtopic": "Lecture Quiz · Accountable Care Organizations (ACOs)", "question": "Which of the following is a key feature of Accountable Care Organizations (ACOs)?", "options": [{"id": "A", "text": "Fee-for-service reimbursement"}, {"id": "B", "text": "Physician-only leadership"}, {"id": "C", "text": "Shared savings based on cost and quality"}, {"id": "D", "text": "Mandatory patient enrollment"}, {"id": "E", "text": "Exclusive hospital ownership"}], "correct_answer": "C", "key_concept": "ACOs align provider networks around value by tying shared financial savings (and potential shared losses) to meeting both total cost and clinical quality benchmarks.", "explanation": "From the Policy II Quiz Review (Health Law & Ethics Part 1, Slide 3): the hallmark feature of ACOs is shared savings (and in downside-risk tracks, shared losses) contingent upon controlling total spending while hitting quality targets.", "distractors": {"A": "Pure fee-for-service rewards volume without quality/cost accountability; ACOs layer shared-savings incentives on top.", "B": "ACOs can be led by multidisciplinary provider groups, health systems, or physician-hospital partnerships.", "C": "Correct. Shared savings tied to both cost containment and quality benchmarks is the defining feature of ACOs.", "D": "Medicare ACO beneficiaries are attributed based on care patterns and retain freedom to see outside providers.", "E": "ACOs do not require exclusive hospital ownership; many are physician-led."}}, {"id": 22, "q_num": "22", "category": "Healthcare Policy & Economics", "subtopic": "Lecture Quiz · The Iron Triangle of Health Policy", "question": "Which of the following best describes the Iron Triangle in health policy?", "options": [{"id": "A", "text": "Relationship between patients, providers, and payers"}, {"id": "B", "text": "Interaction of cost, quality, and access"}, {"id": "C", "text": "Alliance of Political Will, Social Strategy, and Scientific Evidence"}, {"id": "D", "text": "Balance of equity, efficiency, and accountability"}, {"id": "E", "text": "Coordination of federal, state, and local agencies"}], "correct_answer": "B", "key_concept": "The Iron Triangle captures the competing trade-offs among Cost, Quality, and Access in health care policy.", "explanation": "From the Policy II Quiz Review (Health Law & Ethics Part 1, Slide 4): William Kissick's Iron Triangle describes the constant interaction and trade-off among cost, quality, and access—where improving two dimensions usually pressures the third.", "distractors": {"A": "Patients, providers, and payers (plus public entities) are health policy stakeholders, not the Iron Triangle.", "B": "Correct. The Iron Triangle models the competing interaction of cost, quality, and access.", "C": "Political will, social strategy, and scientific evidence are the three forces of policy formation.", "D": "Equity, efficiency, and accountability are broader reform values rather than the Iron Triangle vertices.", "E": "Intergovernmental agency coordination is federalism/governance, not the Iron Triangle."}}, {"id": 23, "q_num": "23", "category": "Health Law & Ethics", "subtopic": "Lecture Quiz · Concept of Informed Consent", "question": "Which of the following best describes the concept of informed consent?", "options": [{"id": "A", "text": "Physician makes decisions on behalf of the patient"}, {"id": "B", "text": "Patient agrees to treatment without explanation"}, {"id": "C", "text": "Patient receives information and voluntarily agrees to treatment"}, {"id": "D", "text": "Consent is obtained only for surgical procedures"}], "correct_answer": "C", "key_concept": "Informed consent is an active communication process in which a capable patient receives material information (risks, benefits, alternatives), understands it, and voluntarily authorizes treatment.", "explanation": "From the Law & Ethics I Quiz Review (Health Law & Ethics Part 2, Slide 6): informed consent rests on patient autonomy—requiring clear disclosure of risks, benefits, and alternatives so the patient can voluntarily agree (or decline).", "distractors": {"A": "Unilateral physician decision-making represents paternalism, the opposite of informed consent.", "B": "Agreeing without explanation lacks disclosure and understanding, invalidating consent.", "C": "Correct. Informed consent requires that the patient receives adequate information and voluntarily agrees to treatment.", "D": "Informed consent applies across clinical care—medications, diagnostics, and procedures—not exclusively surgery."}}, {"id": 24, "q_num": "24", "category": "Health Law & Ethics", "subtopic": "Lecture Quiz · Ethical Basis of Confidentiality", "question": "Which principle of medical ethics is most directly associated with protecting patient confidentiality?", "options": [{"id": "A", "text": "Justice"}, {"id": "B", "text": "Autonomy"}, {"id": "C", "text": "Beneficence"}, {"id": "D", "text": "Nonmaleficence"}], "correct_answer": "B", "key_concept": "Protecting patient confidentiality is rooted most directly in Autonomy—respecting a person's right to self-determination and control over their personal health information.", "explanation": "From the Law & Ethics I Quiz Review (Health Law & Ethics Part 2, Slide 7): confidentiality directly upholds patient autonomy by respecting the individual's right to decide who has access to their private health information.", "distractors": {"A": "Justice focuses on fair, equitable distribution of care and resources across populations.", "B": "Correct. Autonomy—respect for persons and self-determination over personal information—is most directly tied to confidentiality.", "C": "Beneficence centers on acting affirmatively to promote the patient's clinical well-being.", "D": "Nonmaleficence centers on avoiding infliction of harm ('do no harm')."}}, {"id": 25, "q_num": "25", "category": "Health Law & Ethics", "subtopic": "Lecture Quiz · Justice & Medicaid Refusal", "question": "A physician refuses to treat a Medicaid patient due to low reimbursement rates. Which ethical principle is most challenged in this scenario?", "options": [{"id": "A", "text": "Autonomy"}, {"id": "B", "text": "Beneficence"}, {"id": "C", "text": "Justice"}, {"id": "D", "text": "Nonmaleficence"}], "correct_answer": "C", "key_concept": "Denying care based on payer status (e.g., refusing Medicaid patients due to lower reimbursement) directly challenges the bioethical principle of Justice.", "explanation": "From the Law & Ethics II Quiz Review (Clinical Informatics Part 1, Slide 2): justice demands equitable, non-discriminatory access to health care and fair stewardship of system resources—which is directly compromised when patients are turned away based on Medicaid reimbursement rates.", "distractors": {"A": "Autonomy concerns patient self-determination in clinical choices rather than equitable payer access.", "B": "Beneficence involves acting in an active patient's clinical best interest.", "C": "Correct. Refusing Medicaid patients due to low reimbursement directly challenges Justice and health equity.", "D": "Nonmaleficence focuses on avoiding inflicting harm during care."}}, {"id": 26, "q_num": "26", "category": "Health Law & Ethics", "subtopic": "Lecture Quiz · HIPAA & Social Media Posting", "question": "A hospital administrator discovers that a physician posted a patient's radiograph on social media without identifiers. What is the most appropriate response?", "options": [{"id": "A", "text": "No action is needed since identifiers were removed"}, {"id": "B", "text": "Report the incident to CMS"}, {"id": "C", "text": "Investigate for potential HIPAA violation"}, {"id": "D", "text": "Notify the patient's family"}], "correct_answer": "C", "key_concept": "Removing visible identifiers does not guarantee HIPAA Safe Harbor de-identification; posting clinical images on social media requires immediate institutional investigation as a potential HIPAA violation.", "explanation": "From the Law & Ethics II Quiz Review (Clinical Informatics Part 1, Slide 3): distinctive imaging features, timestamps, captions, or metadata can still re-identify a patient. The administrator must immediately initiate an investigation for a potential HIPAA violation.", "distractors": {"A": "Stripping obvious identifiers does not automatically satisfy HIPAA de-identification or institutional social-media policy.", "B": "HIPAA compliance is enforced by the HHS Office for Civil Rights (OCR) after internal investigation, not reported directly to CMS first.", "C": "Correct. The administrator must investigate the incident as a potential HIPAA violation.", "D": "Notifying family precedes fact-finding and could itself create unauthorized disclosure issues."}}, {"id": 27, "q_num": "27", "category": "Clinical Informatics", "subtopic": "Lecture Quiz · Benefit of CPOE", "question": "Which of the following is a key benefit of computerized provider order entry (CPOE) in clinical informatics?", "options": [{"id": "A", "text": "Reduces the need for clinical documentation"}, {"id": "B", "text": "Eliminates the need for clinical decision support"}, {"id": "C", "text": "Decreases medication errors"}, {"id": "D", "text": "Increases patient wait times"}, {"id": "E", "text": "Limits access to patient data"}], "correct_answer": "C", "key_concept": "Computerized Provider Order Entry (CPOE) eliminates illegible handwriting and transcription errors, significantly decreasing medication errors.", "explanation": "From the Clinical Informatics I Quiz Review (Clinical Informatics Part 2, Slide 3): CPOE directly standardizes electronic medication and diagnostic ordering, eliminating handwriting ambiguity and integrating real-time safety checks to decrease medication errors.", "distractors": {"A": "CPOE digitizes order entry but does not eliminate the need for clinical progress documentation.", "B": "CPOE works synergistically with CDS (dose, allergy, interaction checks) rather than replacing it.", "C": "Correct. Decreasing medication errors is a flagship safety benefit of CPOE.", "D": "Electronic order transmission speeds turnaround rather than increasing patient wait times.", "E": "CPOE improves transparency and care-team access to active orders rather than limiting data access."}}, {"id": 28, "q_num": "28", "category": "Clinical Informatics", "subtopic": "Lecture Quiz · Health Information Exchange (HIE)", "question": "The exchange of information across the boundaries of health care organizations within a region, community, or system is called:", "options": [{"id": "A", "text": "Personal Health Record"}, {"id": "B", "text": "Computerized Provider Order Entry"}, {"id": "C", "text": "Electronic Health Record"}, {"id": "D", "text": "Health Information Exchange"}, {"id": "E", "text": "Bed Management System"}], "correct_answer": "D", "key_concept": "A Health Information Exchange (HIE) enables secure electronic sharing of patient clinical data across distinct health care organizations within a community or region.", "explanation": "From the Clinical Informatics I Quiz Review (Clinical Informatics Part 2, Slide 4): Health Information Exchange (HIE) is the infrastructure that allows separate health care organizations—such as competing hospitals, clinics, and labs across a region (e.g., HealtheLink in Western NY)—to securely share patient records.", "distractors": {"A": "A Personal Health Record (PHR) is the patient-controlled record/portal, not cross-organizational regional exchange.", "B": "CPOE is electronic ordering within an EHR.", "C": "An EHR is an individual health system's electronic medical record rather than the cross-organizational exchange network.", "D": "Correct. Health Information Exchange (HIE) enables cross-organizational data exchange across a region or community.", "E": "A Bed Management System tracks internal inpatient bed availability and hospital throughput."}}];
+
+    const DOMAINS = [
+      "Change Management",
+      "Healthcare Policy & Economics",
+      "Health Law & Ethics",
+      "Clinical Informatics"
+    ];
+    const title_text = "HSS Semester 3 Official Practice & Lecture Quizzes (28 Questions)";
+
+    // State Variables
+    let appMode = 'tutor'; // 'tutor' or 'exam'
+    let examSubmitted = false;
+    let activeCategory = 'ALL';
+    let filteredQuestions = [...ALL_QUESTIONS];
+    let currentIndex = 0;
+
+    // Interaction Storage
+    let userAnswers = {}; 
+    let flaggedQuestions = new Set();
+    let eliminatedOptions = {}; 
+    let questionHighlights = {}; 
+
+    // Tools
+    let isHighlighterActive = false;
+    let isStrikethroughActive = false;
+    let timerSeconds = 0;
+    let timerRunning = true;
+    let timerInterval = null;
+
+    const STORAGE_KEY = 'hss_28q_practice_state_v1';
+
+    // --- Init ---
+    function init() {
+      loadState();
+      buildCategoryTray();
+      buildSidebarNavigator();
+      filterCategory(activeCategory || 'ALL', false);
+      startTimer();
+      setupKeyboardNavigation();
+      setupHighlighterEvents();
+      updateModeUI();
+
+      const answeredCount = Object.keys(userAnswers).length;
+      if (answeredCount > 0) {
+        showToast(`Restored previous study session: ${answeredCount} of ${ALL_QUESTIONS.length} answered`);
+      }
+    }
+
+    function setMode(mode) {
+      appMode = mode;
+      updateModeUI();
+      renderCurrentQuestion();
+      saveState();
+      showToast(`Switched to ${mode === 'tutor' ? 'Tutor Mode (Immediate Feedback)' : 'Exam Mode (Timed Block)'}`);
+    }
+
+    function updateModeUI() {
+      const tutorBtn = document.getElementById('modeTutorBtn');
+      const examBtn = document.getElementById('modeExamBtn');
+      const submitBtn = document.getElementById('examSubmitBtn');
+
+      if (appMode === 'tutor') {
+        tutorBtn.classList.add('active');
+        examBtn.classList.remove('active');
+        submitBtn.style.display = 'none';
+      } else {
+        examBtn.classList.add('active');
+        tutorBtn.classList.remove('active');
+        submitBtn.style.display = !examSubmitted ? 'inline-flex' : 'none';
+      }
+    }
+
+    function submitExamBlock() {
+      const totalAns = Object.keys(userAnswers).length;
+      if (totalAns < ALL_QUESTIONS.length) {
+        if (!confirm(`You have answered ${totalAns} of ${ALL_QUESTIONS.length} questions. Are you sure you want to end this exam block and view your diagnostic report?`)) {
+          return;
+        }
+      }
+      examSubmitted = true;
+      document.getElementById('examSubmitBtn').style.display = 'none';
+      renderCurrentQuestion();
+      buildSidebarNavigator();
+      openScoreReport();
+      saveState();
+      showToast('Exam Block submitted! Reviewing your answers & rationales.');
+    }
+
+    // --- State Persistence ---
+    function saveState() {
+      const state = {
+        appMode,
+        examSubmitted,
+        activeCategory,
+        currentQNum: filteredQuestions[currentIndex]?.q_num || '1',
+        userAnswers,
+        flaggedQuestions: Array.from(flaggedQuestions),
+        eliminatedOptions: Object.fromEntries(
+          Object.entries(eliminatedOptions).map(([k, set]) => [k, Array.from(set)])
+        ),
+        questionHighlights,
+        timerSeconds,
+        theme: document.body.getAttribute('data-theme')
+      };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.warn('Could not save to localStorage', e);
+      }
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const state = JSON.parse(raw);
+        if (state.appMode) appMode = state.appMode;
+        if (typeof state.examSubmitted === 'boolean') examSubmitted = state.examSubmitted;
+        if (state.activeCategory) activeCategory = state.activeCategory;
+        if (state.userAnswers) userAnswers = state.userAnswers;
+        if (state.flaggedQuestions) flaggedQuestions = new Set(state.flaggedQuestions);
+        if (state.eliminatedOptions) {
+          eliminatedOptions = {};
+          for (const [k, arr] of Object.entries(state.eliminatedOptions)) {
+            eliminatedOptions[k] = new Set(arr);
+          }
+        }
+        if (state.questionHighlights) questionHighlights = state.questionHighlights;
+        if (typeof state.timerSeconds === 'number') timerSeconds = state.timerSeconds;
+        if (state.theme) setTheme(state.theme);
+      } catch (e) {
+        console.warn('Error loading localStorage state', e);
+      }
+    }
+
+    function resetExamProgress() {
+      if (!confirm('Are you sure you want to reset all answers, flags, and highlights for this exam?')) return;
+      userAnswers = {};
+      flaggedQuestions.clear();
+      eliminatedOptions = {};
+      questionHighlights = {};
+      timerSeconds = 0;
+      examSubmitted = false;
+      saveState();
+      closeScoreReportDirect();
+      updateModeUI();
+      renderCurrentQuestion();
+      buildSidebarNavigator();
+      buildCategoryTray();
+      showToast('Exam progress has been completely reset.');
+    }
+
+    // --- Category Filtering ---
+    function buildCategoryTray() {
+      const tray = document.getElementById('categoryTray');
+      tray.innerHTML = '';
+
+      const allPill = document.createElement('div');
+      allPill.className = `cat-pill ${activeCategory === 'ALL' ? 'active' : ''}`;
+      allPill.onclick = () => filterCategory('ALL');
+      allPill.innerHTML = `<span>All Domains</span> <span class="cat-pill-count">${ALL_QUESTIONS.length}</span>`;
+      tray.appendChild(allPill);
+
+      DOMAINS.forEach(dom => {
+        const count = ALL_QUESTIONS.filter(q => q.category === dom).length;
+        const pill = document.createElement('div');
+        pill.className = `cat-pill ${activeCategory === dom ? 'active' : ''}`;
+        pill.onclick = () => filterCategory(dom);
+        pill.innerHTML = `<span>${dom}</span> <span class="cat-pill-count">${count}</span>`;
+        tray.appendChild(pill);
+      });
+    }
+
+    function filterCategory(catName, shouldSave = true) {
+      activeCategory = catName;
+      if (catName === 'ALL') {
+        filteredQuestions = [...ALL_QUESTIONS];
+      } else {
+        filteredQuestions = ALL_QUESTIONS.filter(q => q.category === catName);
+      }
+      currentIndex = 0;
+      buildCategoryTray();
+      renderCurrentQuestion();
+      buildSidebarNavigator();
+      if (shouldSave) saveState();
+    }
+
+    // --- RIGHT SIDEBAR: Question Navigator ---
+    function buildSidebarNavigator() {
+      const grid = document.getElementById('sidebarQuestionGrid');
+      grid.innerHTML = '';
+
+      const totalQ = ALL_QUESTIONS.length;
+      const totalAns = Object.keys(userAnswers).length;
+      const totalCorrect = Object.values(userAnswers).filter(a => a.isCorrect).length;
+      const totalPct = totalAns > 0 ? Math.round((totalCorrect / totalAns) * 100) : 0;
+
+      document.getElementById('sidebarOverallProgress').textContent = `${totalAns}/${totalQ}`;
+      document.getElementById('sideCompletedVal').textContent = `${totalAns} / ${totalQ}`;
+      document.getElementById('sideAccuracyVal').textContent = `${totalPct}%`;
+
+      const currentQNum = filteredQuestions[currentIndex]?.q_num;
+
+      ALL_QUESTIONS.forEach(q => {
+        const ans = userAnswers[q.q_num];
+        const isFlagged = flaggedQuestions.has(q.q_num);
+        const isAnswered = !!ans;
+
+        const btn = document.createElement('div');
+        btn.className = 'grid-btn';
+        if (q.q_num === currentQNum) btn.classList.add('current');
+
+        if (isAnswered) {
+          if (appMode === 'exam' && !examSubmitted) {
+            btn.classList.add('answered-exam');
+          } else {
+            btn.classList.add(ans.isCorrect ? 'correct' : 'incorrect');
+          }
+        }
+
+        if (isFlagged) btn.classList.add('flagged');
+
+        btn.textContent = q.q_num;
+        btn.onclick = () => jumpToQuestion(q.q_num);
+        grid.appendChild(btn);
+      });
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('examSidebar');
+      sidebar.classList.toggle('collapsed');
+    }
+
+    // --- Render Current Question ---
+    function renderCurrentQuestion() {
+      if (filteredQuestions.length === 0) return;
+      const q = filteredQuestions[currentIndex];
+
+      const totalInFilter = filteredQuestions.length;
+      document.getElementById('qBadgeText').textContent = `Question ${currentIndex + 1} of ${totalInFilter} (Master Q${q.q_num})`;
+      document.getElementById('navProgressBadge').textContent = `Q ${currentIndex + 1} / ${totalInFilter}`;
+
+      const isFlagged = flaggedQuestions.has(q.q_num);
+      const flagBtn = document.getElementById('flagBtn');
+      const flagText = document.getElementById('flagBtnText');
+      if (isFlagged) {
+        flagBtn.classList.add('flagged');
+        flagText.textContent = 'Flagged';
+      } else {
+        flagBtn.classList.remove('flagged');
+        flagText.textContent = 'Flag Question';
+      }
+
+      // Stem text with user highlights
+      const stemContainer = document.getElementById('questionStemText');
+      let stemHtml = escapeHtml(q.question);
+      const highlights = questionHighlights[q.q_num] || [];
+      highlights.forEach(hText => {
+        if (hText && hText.trim()) {
+          const regex = new RegExp(`(${escapeRegex(hText)})`, 'gi');
+          stemHtml = stemHtml.replace(regex, `<mark class="user-highlight" onclick="removeHighlight('${q.q_num}', this, event)">$1</mark>`);
+        }
+      });
+      stemContainer.innerHTML = stemHtml;
+
+      // Options
+      const optionsContainer = document.getElementById('optionsList');
+      optionsContainer.innerHTML = '';
+
+      const answerInfo = userAnswers[q.q_num];
+      const isAnswered = !!answerInfo;
+      const eliminated = eliminatedOptions[q.q_num] || new Set();
+
+      const showFeedback = (appMode === 'tutor' && isAnswered) || (appMode === 'exam' && examSubmitted && isAnswered);
+
+      q.options.forEach(opt => {
+        const optDiv = document.createElement('div');
+        optDiv.className = 'option-item';
+
+        if (eliminated.has(opt.id)) optDiv.classList.add('struck');
+
+        if (isAnswered) {
+          if (answerInfo.selected === opt.id) {
+            optDiv.classList.add('selected');
+          }
+          if (showFeedback) {
+            optDiv.classList.add('disabled');
+            if (opt.id === q.correct_answer) {
+              optDiv.classList.add('state-correct');
+            } else if (opt.id === answerInfo.selected) {
+              optDiv.classList.add('state-incorrect');
+            }
+          }
+        }
+
+        optDiv.onclick = (e) => {
+          if (isStrikethroughActive) {
+            e.stopPropagation();
+            toggleEliminateOption(q.q_num, opt.id);
+          } else {
+            if (appMode === 'tutor' && isAnswered) return;
+            if (appMode === 'exam' && examSubmitted) return;
+            selectAnswer(opt.id);
+          }
+        };
+
+        optDiv.oncontextmenu = (e) => {
+          e.preventDefault();
+          toggleEliminateOption(q.q_num, opt.id);
+        };
+
+        optDiv.innerHTML = `
+          <div class="option-letter">${opt.id}</div>
+          <div class="option-text">${escapeHtml(opt.text)}</div>
+          <button class="strike-btn" onclick="event.stopPropagation(); toggleEliminateOption('${q.q_num}', '${opt.id}')" title="Eliminate / Cross out">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        `;
+        optionsContainer.appendChild(optDiv);
+      });
+
+      // Explanation Card
+      const expCard = document.getElementById('explanationCard');
+      if (showFeedback) {
+        expCard.style.display = 'flex';
+        const expStatus = document.getElementById('expStatusText');
+        if (answerInfo.isCorrect) {
+          expStatus.className = 'exp-status correct';
+          expStatus.innerHTML = `
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>Correct! (Answer: ${q.correct_answer})</span>
+          `;
+        } else {
+          expStatus.className = 'exp-status incorrect';
+          expStatus.innerHTML = `
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            <span>Incorrect. Selected: ${answerInfo.selected}. Correct Answer: ${q.correct_answer}</span>
+          `;
+        }
+
+        // Reveal Category and Subtopic inside explanation
+        document.getElementById('expCategoryText').textContent = q.category;
+        document.getElementById('expSubtopicText').textContent = q.subtopic || 'High Yield';
+
+        document.getElementById('pearlText').textContent = q.key_concept || 'High-yield Health Systems Science concept.';
+        document.getElementById('explanationBody').textContent = q.explanation;
+
+        // Distractor Breakdown
+        const distractorContainer = document.getElementById('distractorList');
+        distractorContainer.innerHTML = '';
+
+        q.options.forEach(opt => {
+          const isCorrect = (opt.id === q.correct_answer);
+          const reason = q.distractors && q.distractors[opt.id] ? q.distractors[opt.id] : (isCorrect ? 'Correct option as detailed above.' : 'Incorrect distractor.');
+
+          const dItem = document.createElement('div');
+          dItem.className = `distractor-item ${isCorrect ? 'is-correct' : 'is-incorrect'}`;
+          dItem.innerHTML = `
+            <span class="distractor-letter-badge">${opt.id}</span>
+            <div class="distractor-content">
+              <strong>${escapeHtml(opt.text)}:</strong> ${escapeHtml(reason)}
+            </div>
+          `;
+          distractorContainer.appendChild(dItem);
+        });
+      } else {
+        expCard.style.display = 'none';
+      }
+
+      // Button states
+      document.getElementById('prevBtn').disabled = currentIndex === 0;
+      document.getElementById('nextBtn').disabled = currentIndex === filteredQuestions.length - 1;
+
+      document.getElementById('mainExamContent').scrollTop = 0;
+      buildSidebarNavigator();
+    }
+
+    // --- Answer Selection ---
+    function selectAnswer(optId) {
+      const q = filteredQuestions[currentIndex];
+      const isCorrect = (optId === q.correct_answer);
+
+      userAnswers[q.q_num] = {
+        selected: optId,
+        isCorrect: isCorrect,
+        timestamp: Date.now()
+      };
+
+      saveState();
+      renderCurrentQuestion();
+      buildSidebarNavigator();
+    }
+
+    // --- Navigation ---
+    function prevQuestion() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderCurrentQuestion();
+        saveState();
+      }
+    }
+
+    function nextQuestion() {
+      if (currentIndex < filteredQuestions.length - 1) {
+        currentIndex++;
+        renderCurrentQuestion();
+        saveState();
+      }
+    }
+
+    function jumpToQuestion(qNum) {
+      const idx = filteredQuestions.findIndex(q => q.q_num === qNum);
+      if (idx !== -1) {
+        currentIndex = idx;
+        renderCurrentQuestion();
+        saveState();
+      } else {
+        activeCategory = 'ALL';
+        filteredQuestions = [...ALL_QUESTIONS];
+        buildCategoryTray();
+        currentIndex = ALL_QUESTIONS.findIndex(q => q.q_num === qNum);
+        renderCurrentQuestion();
+        saveState();
+      }
+    }
+
+    // --- Flagging ---
+    function toggleFlagCurrentQuestion() {
+      const q = filteredQuestions[currentIndex];
+      if (flaggedQuestions.has(q.q_num)) {
+        flaggedQuestions.delete(q.q_num);
+      } else {
+        flaggedQuestions.add(q.q_num);
+      }
+      saveState();
+      renderCurrentQuestion();
+    }
+
+    // --- Elimination ---
+    function toggleEliminateOption(qNum, optId) {
+      if (!eliminatedOptions[qNum]) {
+        eliminatedOptions[qNum] = new Set();
+      }
+      if (eliminatedOptions[qNum].has(optId)) {
+        eliminatedOptions[qNum].delete(optId);
+      } else {
+        eliminatedOptions[qNum].add(optId);
+      }
+      saveState();
+      renderCurrentQuestion();
+    }
+
+    function toggleStrikethroughMode() {
+      isStrikethroughActive = !isStrikethroughActive;
+      const btn = document.getElementById('strikethroughToggleBtn');
+      if (isStrikethroughActive) {
+        btn.classList.add('active-tool');
+        showToast('Cross-out active: click any option to strike through');
+      } else {
+        btn.classList.remove('active-tool');
+        showToast('Cross-out tool deactivated');
+      }
+    }
+
+    // --- Highlighter Feature ---
+    function toggleHighlighterMode() {
+      isHighlighterActive = !isHighlighterActive;
+      const btn = document.getElementById('highlighterToggleBtn');
+      if (isHighlighterActive) {
+        btn.classList.add('active-tool');
+        showToast('Highlighter active: drag over text in the stem');
+      } else {
+        btn.classList.remove('active-tool');
+        showToast('Highlighter deactivated');
+      }
+    }
+
+    function setupHighlighterEvents() {
+      const stemContainer = document.getElementById('questionStemText');
+      const tooltip = document.getElementById('highlightTooltip');
+
+      stemContainer.addEventListener('mouseup', (e) => {
+        const selection = window.getSelection();
+        const selectedText = selection.toString().trim();
+
+        if (selectedText.length > 2) {
+          if (isHighlighterActive) {
+            // Auto-highlight if mode is active
+            applyHighlightText(selectedText);
+            selection.removeAllRanges();
+            tooltip.style.display = 'none';
+          } else {
+            // Show floating highlight tooltip
+            const range = selection.getRangeAt(0);
+            const rect = range.getBoundingClientRect();
+            const containerRect = stemContainer.getBoundingClientRect();
+            
+            tooltip.style.left = `${rect.left + rect.width / 2}px`;
+            tooltip.style.top = `${rect.top - 10}px`;
+            tooltip.style.position = 'fixed';
+            tooltip.style.display = 'block';
+          }
+        } else {
+          tooltip.style.display = 'none';
+        }
+      });
+
+      document.addEventListener('mousedown', (e) => {
+        if (e.target !== tooltip && !tooltip.contains(e.target)) {
+          tooltip.style.display = 'none';
+        }
+      });
+    }
+
+    function applySelectionHighlight() {
+      const selection = window.getSelection();
+      const selectedText = selection.toString().trim();
+      if (selectedText.length > 1) {
+        applyHighlightText(selectedText);
+        selection.removeAllRanges();
+      }
+      document.getElementById('highlightTooltip').style.display = 'none';
+    }
+
+    function applyHighlightText(textToHighlight) {
+      const q = filteredQuestions[currentIndex];
+      if (!questionHighlights[q.q_num]) {
+        questionHighlights[q.q_num] = [];
+      }
+      if (!questionHighlights[q.q_num].includes(textToHighlight)) {
+        questionHighlights[q.q_num].push(textToHighlight);
+        saveState();
+        renderCurrentQuestion();
+        showToast('Highlighted');
+      }
+    }
+
+    function removeHighlight(qNum, el, event) {
+      event.stopPropagation();
+      const text = el.textContent;
+      if (questionHighlights[qNum]) {
+        questionHighlights[qNum] = questionHighlights[qNum].filter(t => t !== text);
+        saveState();
+        renderCurrentQuestion();
+        showToast('Highlight removed');
+      }
+    }
+
+    // --- Score Report ---
+    function openScoreReport() {
+      document.getElementById('scoreModal').classList.add('open');
+
+      const totalQ = ALL_QUESTIONS.length;
+      const answeredList = Object.values(userAnswers);
+      const totalAns = answeredList.length;
+      const totalCorrect = answeredList.filter(a => a.isCorrect).length;
+      const totalIncorrect = totalAns - totalCorrect;
+      const pct = totalAns > 0 ? Math.round((totalCorrect / totalAns) * 100) : 0;
+
+      document.getElementById('reportAccuracyVal').textContent = `${pct}%`;
+      document.getElementById('reportCorrectCount').textContent = totalCorrect;
+      document.getElementById('reportIncorrectCount').textContent = totalIncorrect;
+      document.getElementById('reportAnsweredCount').textContent = `${totalAns} / ${totalQ}`;
+
+      const tbody = document.getElementById('reportDomainTableBody');
+      tbody.innerHTML = '';
+
+      DOMAINS.forEach(dom => {
+        const domQs = ALL_QUESTIONS.filter(q => q.category === dom);
+        const domAns = domQs.filter(q => userAnswers[q.q_num]);
+        const domCorrect = domAns.filter(q => userAnswers[q.q_num].isCorrect);
+        const domPct = domAns.length > 0 ? Math.round((domCorrect.length / domAns.length) * 100) : 0;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td style="font-weight:600; color:var(--text-main);">${dom}</td>
+          <td>${domAns.length} / ${domQs.length}</td>
+          <td style="color:var(--success); font-family:var(--font-mono); font-weight:700;">${domCorrect.length}</td>
+          <td>
+            <span style="font-family:var(--font-mono); font-weight:700; color: ${domPct >= 70 ? 'var(--success)' : domPct >= 50 ? 'var(--warning)' : 'var(--error)'};">
+              ${domPct}%
+            </span>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function closeScoreReport(e) {
+      if (e.target.id === 'scoreModal') closeScoreReportDirect();
+    }
+
+    function closeScoreReportDirect() {
+      document.getElementById('scoreModal').classList.remove('open');
+    }
+
+    // --- Targeted Review Prompt Modal ---
+    function openGeminiModal() {
+      document.getElementById('geminiModal').classList.add('open');
+
+      const missedQuestions = ALL_QUESTIONS.filter(q => userAnswers[q.q_num] && !userAnswers[q.q_num].isCorrect);
+      const domainMissCount = {};
+      const subtopicList = [];
+
+      missedQuestions.forEach(q => {
+        domainMissCount[q.category] = (domainMissCount[q.category] || 0) + 1;
+        if (q.subtopic && !subtopicList.includes(q.subtopic)) {
+          subtopicList.push(q.subtopic);
+        }
+      });
+
+      let promptText = `I am a medical student at the University at Buffalo studying for my Health Systems Science (HSS) Semester 3 final examination.\n\n`;
+      promptText += `I just completed ${title_text}.\n`;
+
+      if (missedQuestions.length === 0) {
+        promptText += `I scored 100% on this block! Please provide 5 ultra-challenging integrative clinical vignettes combining Change Management, Healthcare Policy & Economics, Coding & Payment Models, Health Law & Ethics, and Clinical Informatics.\n`;
+      } else {
+        promptText += `I missed ${missedQuestions.length} questions on this practice set. My weak areas are distributed as follows:\n`;
+        for (const [dom, count] of Object.entries(domainMissCount)) {
+          promptText += `- ${dom}: ${count} missed questions\n`;
+        }
+        promptText += `\nSpecific subtopics needing targeted drill:\n`;
+        subtopicList.forEach(st => {
+          promptText += `- ${st}\n`;
+        });
+        promptText += `\nPlease act as an expert Health Systems Science professor. Provide a high-yield targeted drill:\n`;
+        promptText += `1. Review the core frameworks, legal/policy rules, and distinctions for these specific subtopics.\n`;
+        promptText += `2. Give me 3 realistic clinical/systems vignettes that test the common exam traps.\n`;
+        promptText += `3. Walk me step-by-step through the rationale and distractor elimination strategy.\n`;
+      }
+
+      document.getElementById('geminiPromptTextarea').value = promptText;
+    }
+
+    function closeGeminiModal(e) {
+      if (e.target.id === 'geminiModal') closeGeminiModalDirect();
+    }
+
+    function closeGeminiModalDirect() {
+      document.getElementById('geminiModal').classList.remove('open');
+    }
+
+    function copyGeminiPrompt() {
+      const ta = document.getElementById('geminiPromptTextarea');
+      ta.select();
+      navigator.clipboard.writeText(ta.value).then(() => {
+        showToast('Study prompt copied to clipboard!');
+      }).catch(() => {
+        document.execCommand('copy');
+        showToast('Study prompt copied to clipboard!');
+      });
+    }
+
+    // --- Timer ---
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        if (timerRunning) {
+          timerSeconds++;
+          updateTimerDisplay();
+          if (timerSeconds % 30 === 0) saveState();
+        }
+      }, 1000);
+    }
+
+    function toggleTimer() {
+      timerRunning = !timerRunning;
+      showToast(timerRunning ? 'Timer resumed' : 'Timer paused');
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(timerSeconds / 60);
+      const secs = timerSeconds % 60;
+      document.getElementById('timerDisplay').textContent =
+        `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    // --- Theme ---
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+      saveState();
+    }
+
+    function setTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      const sun = document.getElementById('themeIconSun');
+      const moon = document.getElementById('themeIconMoon');
+      if (theme === 'light') {
+        sun.style.display = 'block';
+        moon.style.display = 'none';
+      } else {
+        sun.style.display = 'none';
+        moon.style.display = 'block';
+      }
+    }
+
+    // --- Toast ---
+    let toastTimeout = null;
+    function showToast(msg) {
+      const toast = document.getElementById('toastBox');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2600);
+    }
+
+    // --- Keyboard Navigation ---
+    function setupKeyboardNavigation() {
+      window.addEventListener('keydown', (e) => {
+        if (['input', 'textarea'].includes(e.target.tagName.toLowerCase())) return;
+
+        if (e.key === 'ArrowLeft' || e.key.toLowerCase() === 'p') {
+          prevQuestion();
+        } else if (e.key === 'ArrowRight' || e.key.toLowerCase() === 'n') {
+          nextQuestion();
+        } else if (e.key.toLowerCase() === 'f') {
+          toggleFlagCurrentQuestion();
+        } else if (e.key.toLowerCase() === 's') {
+          toggleStrikethroughMode();
+        } else if (e.key.toLowerCase() === 'h') {
+          // If text selected, highlight it; otherwise toggle tool
+          const sel = window.getSelection().toString().trim();
+          if (sel.length > 1) {
+            applyHighlightText(sel);
+            window.getSelection().removeAllRanges();
+          } else {
+            toggleHighlighterMode();
+          }
+        } else if (e.key.toLowerCase() === 'r') {
+          openScoreReport();
+        } else if (['1', '2', '3', '4', '5'].includes(e.key)) {
+          const idx = parseInt(e.key, 10) - 1;
+          const q = filteredQuestions[currentIndex];
+          if (q && q.options[idx]) {
+            if (appMode === 'tutor' && userAnswers[q.q_num]) return;
+            if (appMode === 'exam' && examSubmitted) return;
+            selectAnswer(q.options[idx].id);
+          }
+        } else if (['a', 'b', 'c', 'd', 'e'].includes(e.key.toLowerCase())) {
+          const letter = e.key.toUpperCase();
+          const q = filteredQuestions[currentIndex];
+          if (q && q.options.some(o => o.id === letter)) {
+            if (appMode === 'tutor' && userAnswers[q.q_num]) return;
+            if (appMode === 'exam' && examSubmitted) return;
+            selectAnswer(letter);
+          }
+        }
+      });
+    }
+
+
+    // --- Helpers ---
+    function escapeHtml(text) {
+      if (!text) return '';
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function escapeRegex(text) {
+      return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    // --- Set Navigation Helper ---
+    function navigateToSet(setNum, e) {
+      if (e) e.preventDefault();
+      const currentPath = window.location.pathname;
+      const isStandalone = currentPath.includes('HSS_');
+      let target = '';
+      if (setNum === 1) {
+        target = isStandalone ? 'HSS_120Q_Interactive_Exam.html' : 'index.html';
+      } else if (setNum === 2) {
+        target = isStandalone ? 'HSS_28Q_Practice_Interactive_Exam.html' : 'practice.html';
+      } else if (setNum === 3) {
+        target = isStandalone ? 'HSS_148Q_Combined_Interactive_Exam.html' : 'all.html';
+      }
+      window.location.href = target;
+    }
+
+    // --- Meow Password Lock Mode ---
+    let meowLocked = true;
+    try {
+      if (sessionStorage.getItem('hss_meow_unlocked') === '1') {
+        meowLocked = false;
+      }
+    } catch (e) {}
+
+    let isApplyingMeow = false;
+    let meowObserver = null;
+    const originalTitle = document.title;
+    const meowOriginalTextNodes = new WeakMap();
+    const meowOriginalTitles = new WeakMap();
+    const meowTrackedTextNodes = new Set();
+    const meowTrackedTitleEls = new Set();
+
+    function meowifyString(str) {
+      if (!str) return str;
+      return str.replace(/[A-Za-z]+(?:['’][A-Za-z]+)*/g, (word) => {
+        if (word.length > 1 && word === word.toUpperCase()) return 'MEOW';
+        if (word[0] === word[0].toUpperCase()) return 'Meow';
+        return 'meow';
+      });
+    }
+
+    function applyMeowToNode(root) {
+      if (!meowLocked || !root) return;
+      isApplyingMeow = true;
+      try {
+        if (root.nodeType === Node.TEXT_NODE) {
+          const parent = root.parentElement;
+          if (parent && !['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT'].includes(parent.tagName) && !parent.closest('#meowLockBar')) {
+            const val = root.nodeValue;
+            if (val && /[A-Za-z]/.test(val)) {
+              const transformed = meowifyString(val);
+              if (transformed !== val) {
+                if (!meowOriginalTextNodes.has(root)) {
+                  meowOriginalTextNodes.set(root, val);
+                  meowTrackedTextNodes.add(root);
+                }
+                root.nodeValue = transformed;
+              }
+            }
+          }
+          return;
+        }
+
+        if (root.nodeType !== Node.ELEMENT_NODE) return;
+        if (root.id === 'meowLockBar' || root.closest('#meowLockBar')) return;
+
+        const titleEls = root.hasAttribute && root.hasAttribute('title')
+          ? [root, ...root.querySelectorAll('[title]')]
+          : Array.from(root.querySelectorAll('[title]'));
+        titleEls.forEach(el => {
+          if (el.closest('#meowLockBar')) return;
+          const t = el.getAttribute('title');
+          if (t && /[A-Za-z]/.test(t)) {
+            const transformed = meowifyString(t);
+            if (transformed !== t) {
+              if (!meowOriginalTitles.has(el)) {
+                meowOriginalTitles.set(el, t);
+                meowTrackedTitleEls.add(el);
+              }
+              el.setAttribute('title', transformed);
+            }
+          }
+        });
+
+        const textareas = root.tagName === 'TEXTAREA'
+          ? [root]
+          : Array.from(root.querySelectorAll('textarea'));
+        textareas.forEach(ta => {
+          if (ta.value && /[A-Za-z]/.test(ta.value)) {
+            const transformed = meowifyString(ta.value);
+            if (transformed !== ta.value) {
+              ta.value = transformed;
+            }
+          }
+        });
+
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+        let node;
+        while ((node = walker.nextNode())) {
+          const parent = node.parentElement;
+          if (!parent || ['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT'].includes(parent.tagName) || parent.closest('#meowLockBar')) {
+            continue;
+          }
+          const val = node.nodeValue;
+          if (val && /[A-Za-z]/.test(val)) {
+            const transformed = meowifyString(val);
+            if (transformed !== val) {
+              if (!meowOriginalTextNodes.has(node)) {
+                meowOriginalTextNodes.set(node, val);
+                meowTrackedTextNodes.add(node);
+              }
+              node.nodeValue = transformed;
+            }
+          }
+        }
+      } finally {
+        isApplyingMeow = false;
+      }
+    }
+
+    function startMeowMode() {
+      if (!meowLocked) {
+        document.getElementById('meowLockBar').classList.add('unlocked');
+        document.body.classList.remove('meow-booting');
+        return;
+      }
+      document.title = meowifyString(originalTitle);
+      applyMeowToNode(document.body);
+      document.body.classList.remove('meow-booting');
+
+      if (meowObserver) meowObserver.disconnect();
+      meowObserver = new MutationObserver((mutations) => {
+        if (!meowLocked || isApplyingMeow) return;
+        for (const m of mutations) {
+          if (m.type === 'characterData') {
+            applyMeowToNode(m.target);
+          } else if (m.type === 'childList') {
+            m.addedNodes.forEach(n => applyMeowToNode(n));
+          }
+        }
+      });
+      meowObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true
+      });
+
+      const origOpenGemini = window.openGeminiModal;
+      if (typeof origOpenGemini === 'function') {
+        window.openGeminiModal = function() {
+          origOpenGemini();
+          if (meowLocked) {
+            const ta = document.getElementById('geminiPromptTextarea');
+            if (ta) ta.value = meowifyString(ta.value);
+          }
+        };
+      }
+
+      const input = document.getElementById('meowPasswordInput');
+      if (input) input.focus();
+    }
+
+    function handleMeowUnlock(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('meowPasswordInput');
+      const err = document.getElementById('meowErrorMsg');
+      const val = (input.value || '').trim().toLowerCase();
+
+      if (val === 'meow') {
+        meowLocked = false;
+        try {
+          sessionStorage.setItem('hss_meow_unlocked', '1');
+        } catch (errStore) {}
+        if (meowObserver) {
+          meowObserver.disconnect();
+          meowObserver = null;
+        }
+        document.title = originalTitle;
+
+        meowTrackedTextNodes.forEach(node => {
+          const orig = meowOriginalTextNodes.get(node);
+          if (orig !== undefined && node.isConnected) {
+            node.nodeValue = orig;
+          }
+        });
+        meowTrackedTextNodes.clear();
+
+        meowTrackedTitleEls.forEach(el => {
+          const orig = meowOriginalTitles.get(el);
+          if (orig !== undefined && el.isConnected) {
+            el.setAttribute('title', orig);
+          }
+        });
+        meowTrackedTitleEls.clear();
+
+        document.getElementById('meowLockBar').classList.add('unlocked');
+
+        buildCategoryTray();
+        renderCurrentQuestion();
+        buildSidebarNavigator();
+        updateModeUI();
+        if (document.getElementById('scoreModal').classList.contains('open')) {
+          openScoreReport();
+        }
+        if (document.getElementById('geminiModal').classList.contains('open')) {
+          openGeminiModal();
+        }
+        showToast('🐱 Unlocked! Welcome to HSS Semester 3 Final Exam.');
+      } else {
+        err.textContent = 'Meow! 😾';
+        input.classList.remove('shake');
+        void input.offsetWidth;
+        input.classList.add('shake');
+        input.select();
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      init();
+      startMeowMode();
+    });
+  </script>
+</body>
+</html>
