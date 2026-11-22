@@ -1,36 +1,40 @@
-# lastHSS — HSS Semester 3 Interactive Exam Bank (148 Questions Total)
+# lastHSS — HSS Semester 3 Comprehensive Exam Bank (448 Questions Total)
 
-[![Live Final Exam 120Q](https://img.shields.io/badge/Final%20Exam-120%20Questions-38bdf8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mayolol16.github.io/lastHSS/)
-[![Live Official Practice & Quizzes 28Q](https://img.shields.io/badge/Practice%20%26%20Quizzes-28%20Questions-a855f7?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mayolol16.github.io/lastHSS/practice.html)
-[![Live All Combined 148Q](https://img.shields.io/badge/All%20Combined-148%20Questions-10b981?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mayolol16.github.io/lastHSS/all.html)
+[![Live Set 1 Final 120Q](https://img.shields.io/badge/Set%201%20Final-120%20Questions-38bdf8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mayolol16.github.io/lastHSS/)
+[![Live Set 2 Recall 150Q](https://img.shields.io/badge/Set%202%20Recall-150%20Questions-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mayolol16.github.io/lastHSS/set2.html)
+[![Live Set 3 Applied 150Q](https://img.shields.io/badge/Set%203%20Applied-150%20Questions-a855f7?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mayolol16.github.io/lastHSS/set3.html)
+[![Live Official Practice & Quizzes 28Q](https://img.shields.io/badge/Practice%20%26%20Quizzes-28%20Questions-f59e0b?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mayolol16.github.io/lastHSS/practice.html)
+[![Live All Combined 448Q](https://img.shields.io/badge/All%20Combined-448%20Questions-10b981?style=for-the-badge&logo=googlechrome&logoColor=white)](https://mayolol16.github.io/lastHSS/all.html)
 
-Interactive, standalone examination web application suite for **Health Systems Science (HSS) — Semester 3 Final Examination**, built in the exact USMLE-style interactive exam format used for SL&I 3 (complete with meow password lock: type `meow` to unlock!).
+Interactive, standalone examination web application suite for **Health Systems Science (HSS) — Semester 3 Final Examination**, built in the exact USMLE-style interactive exam format used for SL&I 3 (with shape-balanced options across all sets and stealth `meow` keystroke lock).
 
 ---
 
 ## 🌐 Launch Interactive Exams (Live on GitHub Pages)
 
-* 👉 **[Final Exam Bank (120 Questions)](https://mayolol16.github.io/lastHSS/)** — Comprehensive 5-domain practice final exam
-* 👉 **[Official Practice & Lecture Quizzes (28 Questions)](https://mayolol16.github.io/lastHSS/practice.html)** — All 16 verbatim questions from `HSS semester 3 Final Exam Practice Qs _.docx` + all 12 verbatim in-class Lecture Quiz Review questions
-* 👉 **[All Questions Combined (148 Questions)](https://mayolol16.github.io/lastHSS/all.html)** — Complete combined question bank (120Q + 28Q)
+* 👉 **[Set 1: Final Exam (120 Questions)](https://mayolol16.github.io/lastHSS/)** — Comprehensive 5-domain final exam
+* 👉 **[Set 2: Basic Recall (150 Questions)](https://mayolol16.github.io/lastHSS/set2.html)** — Term & fact recall (30 Qs per domain, fully shape-balanced)
+* 👉 **[Set 3: Application Questions (150 Questions)](https://mayolol16.github.io/lastHSS/set3.html)** — Clinical & systems scenarios (30 Qs per domain, fully shape-balanced)
+* 👉 **[Official Practice & Lecture Quizzes (28 Questions)](https://mayolol16.github.io/lastHSS/practice.html)** — 16 verbatim official practice questions + 12 verbatim in-class lecture quiz questions
+* 👉 **[All Combined (448 Questions)](https://mayolol16.github.io/lastHSS/all.html)** — Complete 448-question master bank
 
 ---
 
-## 📊 Curricular Distribution (148 Questions Total)
+## 📊 Curricular Distribution (448 Questions Total)
 
-| Domain | Final Exam (120Q) | Practice & Quizzes (28Q) | All Combined (148Q) | Core Tested Competencies |
-| :--- | :---: | :---: | :---: | :--- |
-| **Change Management** | 15 | 4 | **19** | Kotter's 8 Accelerators, guiding coalitions, resistance, behavioral change (mind vs. heart), TRIP, PDSA, physician leadership, AMA competencies, advocacy. |
-| **Healthcare Policy & Economics** | 25 | 7 | **32** | Policy formation & political will, Iron Triangle, Quintuple Aim, cost-sharing, market failures, Medicare/Medicaid, ACA/HRRP/CMMI, ACOs, Section 1332, OBBBA, international models, GLOBE/GUARD. |
-| **Coding & Payment Models** | 18 | 0 | **18** | CPT vs. ICD-10-CM/PCS, medical necessity, FFS, DRGs, bundles, capitation, risk-adjusted capitation & HCCs, shadow incentives & safeguards, upcoding, documentation burnout. |
-| **Health Law & Ethics** | 30 | 11 | **41** | Systems-lens bioethics, systems citizens, law vs. ethics, HIPAA/HITECH & Right of Access, employer requests, mandatory reporting, informed consent, malpractice, CRPs, NY apology/RCA rules, NYPORTS, OPMC, substituted judgment, POLST/MOLST, NY MAID, Sunshine Act, Hippocratic Oath evolution. |
-| **Clinical Informatics** | 32 | 6 | **38** | Sociotechnical informatics, Meaningful Use, PHR & Cures Act, CPOE, HIE, CDS five rights, alert fatigue, hard/soft stops, HL7/FHIR/SMART on FHIR, interoperability, data quality, human factors, predictive/generative/augmented AI, AI failure modes, telehealth, cybersecurity, HEDIS, EBM/PICO, big data, deep learning. |
-| **Total** | **120** | **28** | **148** | **Full Semester 3 Final Exam + All Official Practice & Lecture Quiz Questions** |
+| Domain | Set 1 (120Q) | Set 2 Recall (150Q) | Set 3 Applied (150Q) | Practice (28Q) | Total (448Q) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Change Management** | 15 | 30 | 30 | 4 | **79** |
+| **Healthcare Policy & Economics** | 25 | 30 | 30 | 7 | **92** |
+| **Coding & Payment Models** | 18 | 30 | 30 | 0 | **78** |
+| **Health Law & Ethics** | 30 | 30 | 30 | 11 | **101** |
+| **Clinical Informatics** | 32 | 30 | 30 | 6 | **98** |
+| **Total** | **120** | **150** | **150** | **28** | **448** |
 
 ---
 
 ## ⚡ Features
 
-- **🐱 Stealth Meow Lock**: Every word on the page displays as `meow` on first visit with no visible password box — simply type **`meow`** anywhere on the keyboard to unlock! Once unlocked, it stays unlocked in your browser (`localStorage`) across reloads and set switches until you type **`meow`** again to re-lock.
-- **3-Way Header Switcher**: Seamlessly toggle between `Final Exam (120Q)`, `Practice & Quizzes (28Q)`, and `All Combined (148Q)` with independent `localStorage` progress for each set.
-- **Tutor Mode vs. Exam Mode**, **High-Yield Pearls & Distractor Breakdowns**, **Highlighter (`H`)**, **Cross-Out (`S` or right-click)**, **Flagging (`F`)**, **Keyboard Shortcuts (`1–5` / `A–E`, `←`/`P`, `→`/`N`)**, **Right-Side Navigator**, **Scorecard (`R`)**, and **Targeted Study Prompt Generator**.
+- **Anti-Shape-Giveaway Balancing**: Every question in Sets 1, 2, and 3 is audited for tight option length balance, zero correct-only parenthetical hints, zero unique punctuation/character giveaways, balanced clause counts, and zero absolute-word distractor bias.
+- **🐱 Stealth Meow Lock**: First visit renders every word as `meow` with no visible box — simply type **`meow`** anywhere on the keyboard to unlock (persists in `localStorage` across reloads & tab switches until you type **`meow`** again to lock).
+- **5-Way Header Switcher**: Seamlessly toggle between all 5 sets with independent `localStorage` progress, Tutor/Exam mode, Highlighter (`H`), Cross-Out (`S`), Flagging (`F`), Right-Side Navigator, Scorecard (`R`), and Targeted AI Review Prompt Generator.

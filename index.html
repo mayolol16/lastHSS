@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HSS Semester 3 Final Exam (120 Questions) - Health Systems Science</title>
+  <title>HSS Semester 3 Set 1: Final Exam (120 Questions)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1041,12 +1041,14 @@
     <div class="header-left">
       <div class="brand-title">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-        <span>HSS 3 Final Exam</span>
-        <span class="brand-badge">Health Systems Science</span>
+        <span>HSS 3 Exam</span>
+        <span class="brand-badge">UB Final Prep</span>
         <div class="set-picker">
-          <a href="index.html" onclick="navigateToSet(1, event)" class="set-pill-btn active" id="set1NavBtn" title="HSS Semester 3 Final Exam Bank (120 Questions)">Final Exam (120Q)</a>
-          <a href="practice.html" onclick="navigateToSet(2, event)" class="set-pill-btn " id="set2NavBtn" title="Official Practice Questions Doc (16Q) & Lecture Quiz Reviews (12Q)">Practice & Quizzes (28Q)</a>
-          <a href="all.html" onclick="navigateToSet(3, event)" class="set-pill-btn " id="set3NavBtn" title="All HSS Questions Combined (148 Questions)">All Combined (148Q)</a>
+          <a href="index.html" onclick="navigateToSet(1, event)" class="set-pill-btn active" id="set1NavBtn" title="Set 1: Final Exam (120 Questions)">Set 1 (120Q)</a>
+          <a href="set2.html" onclick="navigateToSet(2, event)" class="set-pill-btn " id="set2NavBtn" title="Set 2: Basic Recall (150 Questions)">Set 2 Recall (150Q)</a>
+          <a href="set3.html" onclick="navigateToSet(3, event)" class="set-pill-btn " id="set3NavBtn" title="Set 3: Application Scenarios (150 Questions)">Set 3 Applied (150Q)</a>
+          <a href="practice.html" onclick="navigateToSet(4, event)" class="set-pill-btn " id="set4NavBtn" title="Official Practice Questions (16Q) & Lecture Quiz Reviews (12Q)">Practice (28Q)</a>
+          <a href="all.html" onclick="navigateToSet(5, event)" class="set-pill-btn " id="set5NavBtn" title="All HSS Sets Combined (448 Questions)">All (448Q)</a>
         </div>
       </div>
     </div>
@@ -1339,7 +1341,7 @@
       "Health Law & Ethics",
       "Clinical Informatics"
     ];
-    const title_text = "HSS Semester 3 Final Exam (120 Questions)";
+    const title_text = "HSS Semester 3 Set 1: Final Exam (120 Questions)";
 
     // State Variables
     let appMode = 'tutor'; // 'tutor' or 'exam'
@@ -2111,9 +2113,13 @@
       if (setNum === 1) {
         target = isStandalone ? 'HSS_120Q_Interactive_Exam.html' : 'index.html';
       } else if (setNum === 2) {
-        target = isStandalone ? 'HSS_28Q_Practice_Interactive_Exam.html' : 'practice.html';
+        target = isStandalone ? 'HSS_Set2_150Q_Recall_Interactive_Exam.html' : 'set2.html';
       } else if (setNum === 3) {
-        target = isStandalone ? 'HSS_148Q_Combined_Interactive_Exam.html' : 'all.html';
+        target = isStandalone ? 'HSS_Set3_150Q_Applied_Interactive_Exam.html' : 'set3.html';
+      } else if (setNum === 4) {
+        target = isStandalone ? 'HSS_28Q_Practice_Interactive_Exam.html' : 'practice.html';
+      } else if (setNum === 5) {
+        target = isStandalone ? 'HSS_448Q_Combined_Interactive_Exam.html' : 'all.html';
       }
       window.location.href = target;
     }
@@ -2305,7 +2311,6 @@
     }
 
     function setupMeowKeystrokeListener() {
-      // Capture phase so typing "meow" never accidentally triggers Option E shortcut
       window.addEventListener('keydown', (e) => {
         if (e.ctrlKey || e.metaKey || e.altKey) return;
         const tag = (e.target && e.target.tagName) ? e.target.tagName.toLowerCase() : '';
@@ -2318,7 +2323,6 @@
         }
         const ch = e.key.toLowerCase();
 
-        // Prevent 'e' from selecting Option E when typing 'm' -> 'e' (part of 'meow')
         if (ch === 'e' && meowKeyBuffer.endsWith('m')) {
           e.stopImmediatePropagation();
           e.preventDefault();
