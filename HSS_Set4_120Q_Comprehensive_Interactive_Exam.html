@@ -2111,20 +2111,23 @@
       const currentPath = window.location.pathname;
       const isStandalone = currentPath.includes('HSS_');
       let target = '';
-      if (setNum === 1) {
+      const s = String(setNum).toLowerCase().trim();
+      if (s === '1' || s === 'set1') {
         target = isStandalone ? 'HSS_120Q_Interactive_Exam.html' : 'index.html';
-      } else if (setNum === 2) {
+      } else if (s === '2' || s === 'set2') {
         target = isStandalone ? 'HSS_Set2_150Q_Recall_Interactive_Exam.html' : 'set2.html';
-      } else if (setNum === 3) {
+      } else if (s === '3' || s === 'set3') {
         target = isStandalone ? 'HSS_Set3_150Q_Applied_Interactive_Exam.html' : 'set3.html';
-      } else if (setNum === 4) {
+      } else if (s === '4' || s === 'set4') {
         target = isStandalone ? 'HSS_Set4_120Q_Comprehensive_Interactive_Exam.html' : 'set4.html';
-      } else if (setNum === 5) {
+      } else if (s === '5' || s === 'practice' || s === 'set5') {
         target = isStandalone ? 'HSS_28Q_Practice_Interactive_Exam.html' : 'practice.html';
-      } else if (setNum === 6) {
+      } else if (s === '6' || s === 'all' || s === 'set6') {
         target = isStandalone ? 'HSS_568Q_Combined_Interactive_Exam.html' : 'all.html';
       }
-      window.location.href = target;
+      if (target) {
+        window.location.href = target;
+      }
     }
 
     // --- Stealth Keystroke Meow Lock Mode ---
