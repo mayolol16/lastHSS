@@ -1042,13 +1042,14 @@
       <div class="brand-title">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
         <span>HSS 3 Exam</span>
-        <span class="brand-badge">UB Final Prep</span>
+        <span class="brand-badge">UB Prep</span>
         <div class="set-picker">
           <a href="index.html" onclick="navigateToSet(1, event)" class="set-pill-btn active" id="set1NavBtn" title="Set 1: Final Exam (120 Questions)">Set 1 (120Q)</a>
-          <a href="set2.html" onclick="navigateToSet(2, event)" class="set-pill-btn " id="set2NavBtn" title="Set 2: Basic Recall (150 Questions)">Set 2 Recall (150Q)</a>
-          <a href="set3.html" onclick="navigateToSet(3, event)" class="set-pill-btn " id="set3NavBtn" title="Set 3: Application Scenarios (150 Questions)">Set 3 Applied (150Q)</a>
-          <a href="practice.html" onclick="navigateToSet(4, event)" class="set-pill-btn " id="set4NavBtn" title="Official Practice Questions (16Q) & Lecture Quiz Reviews (12Q)">Practice (28Q)</a>
-          <a href="all.html" onclick="navigateToSet(5, event)" class="set-pill-btn " id="set5NavBtn" title="All HSS Sets Combined (448 Questions)">All (448Q)</a>
+          <a href="set2.html" onclick="navigateToSet(2, event)" class="set-pill-btn " id="set2NavBtn" title="Set 2: Basic Recall (150 Questions)">Set 2 (150Q)</a>
+          <a href="set3.html" onclick="navigateToSet(3, event)" class="set-pill-btn " id="set3NavBtn" title="Set 3: Application Scenarios (150 Questions)">Set 3 (150Q)</a>
+          <a href="set4.html" onclick="navigateToSet(4, event)" class="set-pill-btn " id="set4NavBtn" title="Set 4: Comprehensive Exam (120 Questions)">Set 4 (120Q)</a>
+          <a href="practice.html" onclick="navigateToSet(5, event)" class="set-pill-btn " id="set5NavBtn" title="Official Practice Questions (16Q) & Lecture Quiz Reviews (12Q)">Practice (28Q)</a>
+          <a href="all.html" onclick="navigateToSet(6, event)" class="set-pill-btn " id="set6NavBtn" title="All HSS Sets Combined (568 Questions)">All (568Q)</a>
         </div>
       </div>
     </div>
@@ -2117,9 +2118,11 @@
       } else if (setNum === 3) {
         target = isStandalone ? 'HSS_Set3_150Q_Applied_Interactive_Exam.html' : 'set3.html';
       } else if (setNum === 4) {
-        target = isStandalone ? 'HSS_28Q_Practice_Interactive_Exam.html' : 'practice.html';
+        target = isStandalone ? 'HSS_Set4_120Q_Comprehensive_Interactive_Exam.html' : 'set4.html';
       } else if (setNum === 5) {
-        target = isStandalone ? 'HSS_448Q_Combined_Interactive_Exam.html' : 'all.html';
+        target = isStandalone ? 'HSS_28Q_Practice_Interactive_Exam.html' : 'practice.html';
+      } else if (setNum === 6) {
+        target = isStandalone ? 'HSS_568Q_Combined_Interactive_Exam.html' : 'all.html';
       }
       window.location.href = target;
     }
